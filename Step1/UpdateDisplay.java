@@ -1,0 +1,7 @@
+package Step1;
+
+public class UpdateDisplay extends CreatureAction{
+    public UpdateDisplay(String name, Creature owner){
+
+    }
+}
