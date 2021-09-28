@@ -1,4 +1,7 @@
-package Step1;
+package Step1.displayable.Structure;
+
+import Step1.displayable.creatures.Creature;
+import Step1.displayable.creatures.Monster;
 
 public class Room extends Structure{
     private int id;
@@ -9,23 +12,23 @@ public class Room extends Structure{
     private int monsterCount = 0;
     private Monster[] monsters;
     public Room(int _id,int _posX, int _posY, int _width, int _height){
-        id = _id;
-        posX = _posX;
-        posY = _posY;
-        width = _width;
-        height = _height;
+        System.out.println("Creating room\n");
+        setId(_id);
+        setPosX(_posX);
+        setPosY(_posY);
+        setWidth(_width);
+        setHeight(_height);
     }
     public void addMonster (Monster monster){
         monsters[monsterCount++] = monster;
     }
-    public void Room(string){
 
-    }
     public void setId(int room){
-
+        id = room;
+        System.out.println("id set\n")
     }
     public void setCreature(Creature Monster){
-        
+
     }
     public String toString(){
         String str = "Room: \n";

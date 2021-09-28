@@ -1,4 +1,4 @@
-package Step1;
+package Step1.displayable;
 
 public class Displayable {
     
@@ -34,15 +34,17 @@ public class Displayable {
     }
 
     public void setPosX(int x){
-
+        System.out.println("pos x set");
     }
     public void setPosY(int y){
+        System.out.println("pos y set");
 
     }
     public void setWidth(int x){
-
+        System.out.println("set width\n");
     }
     public void setHeight(int y){
-        
+        System.out.println("set height\n");
+
     }
 }

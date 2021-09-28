@@ -1,6 +1,12 @@
 package Step1;
 
-public class Dungeon {
+import Step1.displayable.Displayable;
+import Step1.displayable.Structure.Structure.Passage;
+import Step1.displayable.Structure.Structure.Room;
+import Step1.displayable.creatures.Creature;
+import Step1.displayable.item.Item;
+
+public class Dungeon extends Displayable{
     private String name;
     private int width;
     private int topHeight;
@@ -29,7 +35,7 @@ public class Dungeon {
 
     }
     public void addItem(Item){
-        
+
     }
     public String toString() {
         String str = "Dungeon : \n";
