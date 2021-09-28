@@ -27,7 +27,7 @@ public class Displayable {
     }
 
     public void setType(char t){
-
+        System.out.println("name set");
     }
     public void setIntValue(nt v){
 

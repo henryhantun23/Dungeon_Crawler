@@ -1,4 +1,4 @@
-package Step1;
+package Step1.displayable.item;
 
 public class Armor extends Item{
     public Armor(string name){

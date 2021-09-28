@@ -1,4 +1,4 @@
-package Step1;
+package Step1.displayable.Structure;
 
 public class Passage {
     
@@ -9,6 +9,6 @@ public class Passage {
 
     }
     public void setID(int room1, int room2){
-        
+
     }
 }

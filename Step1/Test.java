@@ -7,6 +7,8 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 
+import Step1.displayable.Dungeon;
+
 public class Test {
 
     public static void main(String[] args) {
@@ -48,8 +50,8 @@ public class Test {
             Dungeon dungeon = handler.getDungeon();
 	    // print out all of the students.  This will change depending on 
 	    // what kind of XML we are parsing
-            for (Student student : students) {
-                System.out.println(student);
+            //for (Student student : students) {
+                //System.out.println(student);
             }
             /*
              * the above is a different form of 

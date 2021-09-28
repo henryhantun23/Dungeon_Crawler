@@ -1,6 +1,5 @@
-package Step1;
+package Step1.displayable;
 
-import Step1.displayable.Displayable;
 import Step1.displayable.Structure.Structure.Passage;
 import Step1.displayable.Structure.Structure.Room;
 import Step1.displayable.creatures.Creature;
