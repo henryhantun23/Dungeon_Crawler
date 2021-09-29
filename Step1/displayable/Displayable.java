@@ -1,31 +1,36 @@
 package Step1.displayable;
 
 public class Displayable {
-    private int pos_x;
-    private int pos_y;
+    private int posX;
+    private int posY;
     private int width;
     private int height;
-    private int Max_hits;
+    private int maxhit;
     private char type;
     private int hpm;
     private int hp;
     private int int_val;
-    private int vis_val;
+    private int visible;
+    private int invisible;
+
 
     public Displayable(){
 
     }
 
-    public void setInvisible(){
-
+    public void setInvisible(int invis){
+        invisible = invis;
+        System.out.println("invisible set");
     }
 
     public void setVisible(int vis){
+        visible = vis;
+        System.out.println("visible set");
 
     }
-    public void setMaxHit(int maxHit){
-        Max_hits = maxHit;
-        System.out.println("max hits set");
+    public void setMaxHit(int max_Hit){
+       maxhit = max_Hit;
+       System.out.println("max hits set");
     }
 
     public void setHpMove(int hpMoves){
@@ -47,11 +52,11 @@ public class Displayable {
     }
 
     public void setPosX(int x){
-        pos_x = x;
+        posX = x;
         System.out.println("pos x set");
     }
     public void setPosY(int y){
-        pos_y = y;
+        posY = y;
         System.out.println("pos y set");
     }
     public void setWidth(int x){
@@ -59,7 +64,7 @@ public class Displayable {
         System.out.println("set width\n");
     }
     public void setHeight(int y){
-        height = y
+        height = y;
         System.out.println("set height\n");
     }
 }

@@ -5,8 +5,8 @@ import Step1.displayable.creatures.Monster;
 
 public class Room extends Structure{
     private int id;
-    //private int posX;
-    //private int posY;
+    private int posX;
+    private int posY;
     private int width;
     private int height;
     private int monsterCount = 0;
