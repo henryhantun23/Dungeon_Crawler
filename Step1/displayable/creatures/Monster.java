@@ -8,19 +8,24 @@ public class Monster extends Creature{
     private String type;
     private int hp;
     private int maxhit;
-    public Monster(int _posX, int _posY, String _type, int _hp, int _maxhit){
+    private String name;
+    private int id;
+    public Monster(int _posX, int _posY, char _type, int _hp, int _maxhit, String _name, int _room, int _serial){
         System.out.println("monster created");
-        
-        posY = _posY;
-        type = _type;
+        setName(_name);
+        setPosX(_posX);
+        setPosY(_posY)
+        setType(_type);
         hp = _hp;
         maxhit = _maxhit;
     }
-    public void setName(string){
-
+    public void setName(String _name){
+        name = _name;
+        System.out.println("name set");
     }
-    public void setId(int room, int serial){
-
+    public void setId(int _room, int _serial){
+        id = (_room * 10) + _serial;
+        System.out.println("id set");
     }
 
     public String toString(){
