@@ -1,5 +1,7 @@
 package Step1;
 
+import Step1.displayable.*;
+import java.util.ArrayList;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -10,6 +12,12 @@ public class Step1XMLHandler extends DefaultHandler {
     private static final String CLASSID = "Step1XMLHandler";
 
     private StringBuilder data = null;
+
+    private ArrayList<Dungeon> dungeons = new ArrayList<Dungeon>();
+
+    private Dungeon dungeonBeingParsed = null;
+    private Room roomBeingParsed = null;
+
 
     public void characters(char ch[], int start, int length) throws SAXException {
         data.append(new String(ch, start, length));
