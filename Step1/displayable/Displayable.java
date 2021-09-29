@@ -10,6 +10,7 @@ public class Displayable {
     private int hpm;
     private int hp;
     private int int_val;
+    private int vis_val;
 
     public Displayable(){
 
@@ -19,7 +20,7 @@ public class Displayable {
 
     }
 
-    public void setVisible(){
+    public void setVisible(int vis){
 
     }
 
@@ -34,11 +35,13 @@ public class Displayable {
     }
 
     public void setHp(int Hp){
-
+        hp = Hp;
+        System.out.println("setHP");
     }
 
     public void setType(char t) {
-        System.out.println("name set");
+        type = t;
+        System.out.println("type set");
     }
     public void setIntValue(int v){
         

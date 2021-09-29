@@ -1,11 +1,9 @@
 package Step1.displayable.creatures;
 
-import Step1.displayable.Displayable;
-
 public class Monster extends Creature{
     private int posX;
     private int posY;
-    private String type;
+    private char type;
     private int hp;
     private int maxhit;
     private String name;
@@ -19,10 +17,7 @@ public class Monster extends Creature{
         setHp(_hp);
         setMaxHit(maxhit);
     }
-    public void setName(String _name){
-        name = _name;
-        System.out.println("name set");
-    }
+
     public void setId(int _room, int _serial){
         id = (_room * 10) + _serial;
         System.out.println("id set");
