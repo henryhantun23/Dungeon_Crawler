@@ -1,7 +1,7 @@
 package Step1.displayable;
 
-import Step1.displayable.Structure.Structure.Passage;
-import Step1.displayable.Structure.Structure.Room;
+import Step1.displayable.Structure.Passage;
+import Step1.displayable.Structure.Room;
 import Step1.displayable.creatures.Creature;
 import Step1.displayable.item.Item;
 
@@ -24,16 +24,16 @@ public class Dungeon extends Displayable{
         rooms[roomCount++] = room;
     }
 
-    public void getDungeon(string name, int width, int gameHeight){
+    public void getDungeon(String name, int width, int gameHeight){
 
     }
-    public void addCreature(Creature){
+    public void addCreature(Creature creature){
 
     }
     public void addPassage(Passage passage){
 
     }
-    public void addItem(Item){
+    public void addItem(Item item){
 
     }
     /*

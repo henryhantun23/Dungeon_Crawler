@@ -5,8 +5,9 @@ import Step1.displayable.Displayable;
 
 public class Creature extends Displayable{
 
-    private CreatureAction player_death;
-    public void setDeathAction(CreatureAction da){ //creature actions haven't
+
+    public void setDeathAction(CreatureAction da){
+        System.out.println("Set death action");
 
     }
     /*public void setHitAction(ha){

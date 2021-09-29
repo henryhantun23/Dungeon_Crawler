@@ -14,7 +14,7 @@ public class Displayable {
     private int invisible;
 
 
-    public Displayable(){
+    public Displayable(){ //what does this function do?
 
     }
 
