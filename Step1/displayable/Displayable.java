@@ -5,8 +5,8 @@ public class Displayable {
     private int pos_y;
     private int width;
     private int height;
-    public int Max_hits;
-    private String type;
+    private int Max_hits;
+    private char type;
     private int hpm;
     private int hp;
     private int int_val;
@@ -23,7 +23,6 @@ public class Displayable {
     public void setVisible(int vis){
 
     }
-
     public void setMaxHit(int maxHit){
         Max_hits = maxHit;
         System.out.println("max hits set");
@@ -39,7 +38,7 @@ public class Displayable {
         System.out.println("setHP");
     }
 
-    public void setType(String t) {
+    public void setType(char t) {
         type = t;
         System.out.println("type set");
     }

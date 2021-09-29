@@ -36,6 +36,7 @@ public class Dungeon extends Displayable{
     public void addItem(Item){
 
     }
+    /*
     public String toString() {
         String str = "Dungeon : \n";
         str += "    name: "+ name + "\n";
@@ -44,5 +45,5 @@ public class Dungeon extends Displayable{
         str += "    gameHeight: "+ gameHeight + "\n";
         str += "    bottomHeight: "+ bottomHeight + "\n";
         return str;
-    }
+    }*/
 }
