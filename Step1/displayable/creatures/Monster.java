@@ -8,7 +8,7 @@ public class Monster extends Creature{
     //private char type;
     //private int hit_points;
     //private int maxhit;
-    //private int id;
+    private int id;
 
     public Monster(int _posX, int _posY, char _type, int _hp, int _maxhit, String _name, int _room, int _serial){
         setName(_name);
