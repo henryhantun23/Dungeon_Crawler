@@ -11,6 +11,7 @@ public class Room extends Structure{
     private int height;
     private int monsterCount = 0;
     private Monster[] monsters;
+    private Creature creature;
     public Room(int _id,int _posX, int _posY, int _width, int _height){
         System.out.println("Creating room\n");
         setId(_id);
@@ -28,7 +29,7 @@ public class Room extends Structure{
         System.out.println("id set\n")
     }
     public void setCreature(Creature Monster){
-
+        creature = Monster;
     }
     public String toString(){
         String str = "Room: \n";

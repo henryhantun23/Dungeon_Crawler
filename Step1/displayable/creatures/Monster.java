@@ -14,10 +14,10 @@ public class Monster extends Creature{
         System.out.println("monster created");
         setName(_name);
         setPosX(_posX);
-        setPosY(_posY)
+        setPosY(_posY);
         setType(_type);
-        hp = _hp;
-        maxhit = _maxhit;
+        setHp(_hp);
+        setMaxHit(maxhit);
     }
     public void setName(String _name){
         name = _name;
