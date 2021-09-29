@@ -8,7 +8,7 @@ public class CreatureAction extends Action{
     private String action_type;
 
     public CreatureAction(Creature owner){
-        System.out.println("Creating Action");
+        System.out.println("Creating endgame player action");
         setMessage("Player is killed!");
 
     }

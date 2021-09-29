@@ -4,6 +4,7 @@ public class Action {
 
     public void setMessage(String msg){
         System.out.println("set death message");
+
     }
     public void setIntValue(int v){
 
