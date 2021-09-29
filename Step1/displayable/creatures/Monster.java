@@ -1,8 +1,7 @@
 package Step1.displayable.creatures;
 
 public class Monster extends Creature{
-    private int hit_points;
-    private int hp_Moves;
+
     private String name;
     private int posX;
     private int posY;
