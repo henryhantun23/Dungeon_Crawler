@@ -63,38 +63,25 @@ public class Step1XMLHandler extends DefaultHandler {
         } else if (qName.equalsIgnoreCase("Room")) {
             rooms = new Room[2];
             int room = Integer.parseInt(attributes.getValue("room"));
-            int posX = Integer.parseInt(attributes.getValue("posX"));
-            int posY = Integer.parseInt(attributes.getValue("posY"));
-            int width = Integer.parseInt(attributes.getValue("width"));
-            int height = Integer.parseInt(attributes.getValue("height"));
+
 
         } else if (qName.equalsIgnoreCase("Monster")) {
             String name = attributes.getValue("name");
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
-            int posX = Integer.parseInt(attributes.getValue("posX"));
-            int posY = Integer.parseInt(attributes.getValue("posY"));
-            int type = Integer.parseInt(attributes.getValue("type"));
-            int hp = Integer.parseInt(attributes.getValue("hp"));
-            int maxhit = Integer.parseInt(attributes.getValue("maxhit"));
+
 
         } else if (qName.equalsIgnoreCase("Player")) {
             String name = attributes.getValue("name");
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
-            int visible = Integer.parseInt(attributes.getValue("visible"));
-            int posX = Integer.parseInt(attributes.getValue("posX"));
-            int posY = Integer.parseInt(attributes.getValue("posY"));
-            int hp = Integer.parseInt(attributes.getValue("hp"));
-            int maxhit = Integer.parseInt(attributes.getValue("maxhit"));
-            int hpMoves = Integer.parseInt(attributes.getValue("hpMoves"));
 
         } else if (qName.equalsIgnoreCase("CreatureAction")) {
             String name = attributes.getValue("name");
             String type = attributes.getValue("type");
-            String actionMessage = attributes.getValue("actionMessage");
 
-        } else if (qName.equalsIgnoreCase("posX")) {
+
+        } /*else if (qName.equalsIgnoreCase("posX")) {
             bPosX = true;
         } else if (qName.equalsIgnoreCase("posY")) {
             bPosY = true;
@@ -116,40 +103,24 @@ public class Step1XMLHandler extends DefaultHandler {
             bActionMessage = true;
         } else {
             System.out.println("Unknown qname: " + qName);
-        }
+        }*/
         data = new StringBuilder();
     }
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         Room room;
-        if (qName.equalsIgnoreCase("posX")) {
-            room = (Room) roomBeingParsed;
-            room.setPosX(Integer.parseInt(data.toString()));
-        } else if (qName.equalsIgnoreCase("posY")) {
-            room = (Room) roomBeingParsed;
-            room.setPosX(Integer.parseInt(data.toString()));
-        } else if (qName.equalsIgnoreCase("width")) {
-            room = (Room) roomBeingParsed;
-            room.setPosX(Integer.parseInt(data.toString()));
-        } else if (qName.equalsIgnoreCase("height")) {
-            room = (Room) roomBeingParsed;
-            room.setPosX(Integer.parseInt(data.toString()));
-        } else if (bLocation) {
-            activityBeingParsed.setLocation(data.toString());
-            bLocation = false;
-        } else if (bMeetingTime) {
-            activityBeingParsed.setMeetingTime(data.toString());
-            bMeetingTime = false;
-        } else if (bMeetingDay) {
-            activityBeingParsed.setMeetingDay(data.toString());
-            bMeetingDay = false;
+        if (qName.equalsIgnoreCase("Room")) {
+
+        }
+        else if(qName.equalsIgnoreCase("posX")) {
+
         }
 
-        if (qName.equalsIgnoreCase("Students")) {
-            if (studentCount != maxStudents) {
-                System.out.println("wrong number of students parsed, should be " + maxStudents + ", is " + studentCount);
-            }
+
+
+
+
         } else if (qName.equalsIgnoreCase("Student")) {
             studentBeingParsed = null;
         } else if (qName.equalsIgnoreCase("Activity")) {

@@ -2,6 +2,7 @@ package Step1.displayable.Structure;
 
 import Step1.displayable.creatures.Creature;
 import Step1.displayable.creatures.Monster;
+import Step1.displayable.creatures.Player;
 
 public class Room extends Structure{
     private int id;
@@ -11,7 +12,7 @@ public class Room extends Structure{
     private int height;
     private int monsterCount = 0;
     private Monster[] monsters;
-    private Creature creature;
+    private Player player;
     public Room(int _id,int _posX, int _posY, int _width, int _height){
         System.out.println("Creating room\n");
         setId(_id);
