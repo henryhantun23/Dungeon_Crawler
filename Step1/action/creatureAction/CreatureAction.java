@@ -4,13 +4,12 @@ import Step1.action.Action;
 import Step1.displayable.creatures.Creature;
 
 public class CreatureAction extends Action{
-    private Creature creature;
     private String action_name;
-    private String type_name;
+    private String action_type;
 
-
-    public CreatureAction(Creature owner, String _typename){
+    public CreatureAction(Creature owner){
+        System.out.println("Creating endgame player action");
+        setMessage("Player is killed!");
 
     }
-
 }

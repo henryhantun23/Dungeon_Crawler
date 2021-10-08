@@ -9,7 +9,6 @@ public class Player extends Creature {
     private int maxhit;
     private int visible;
     public Player(String _name, int _hp, int _hpm, int _max_hit, int _posX, int _posY, char _type, int maxhit, int _visible) {
-        System.out.println("Player created");
         setHp(_hp);
         setHpMove(_hpm);
         setMaxHit(_max_hit);
@@ -19,7 +18,7 @@ public class Player extends Creature {
         setHp(_hp);
         setName(_name);
         setVisible(_visible);
-
+        System.out.println("Player created");
     }
     public void setName(String _name){
         name = _name;

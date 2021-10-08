@@ -3,7 +3,7 @@ package Step1.action;
 public class Action {
 
     public void setMessage(String msg){
-        System.out.println("set death message");
+        System.out.println(msg + "\n");
 
     }
     public void setIntValue(int v){
