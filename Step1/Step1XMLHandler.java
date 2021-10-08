@@ -1,9 +1,12 @@
 package Step1;
 
+import Step1.displayable.*;
 import Step1.displayable.Structure.Room;
-import Step1.displayable.Dungeon;
-import Step1.displayable.creatures.*;
+import Step1.displayable.creatures.Monster;
+import Step1.displayable.creatures.Player;
 import Step1.action.*;
+import Step1.action.creatureAction.CreatureAction;
+
 import java.util.ArrayList;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -36,10 +39,6 @@ public class Step1XMLHandler extends DefaultHandler {
     private boolean bHpMoves = false;
     private boolean bActionMessage = false;
 
-    public Dungeon[] getDungeons(){
-        return dungeons;
-    }
-
     public Step1XMLHandler(){
 
     }
@@ -57,28 +56,38 @@ public class Step1XMLHandler extends DefaultHandler {
             int topHeight = Integer.parseInt(attributes.getValue("topHeight"));
             int gameHeight = Integer.parseInt(attributes.getValue("gameHeight"));
             int bottomHeight = Integer.parseInt(attributes.getValue("bottomHeight"));
+            dungeonBeingParsed = new Dungeon(name, width, topHeight, gameHeight, bottomHeight);
 
         } else if (qName.equalsIgnoreCase("Rooms")) {
 
+            rooms = new Room[3];
+
         } else if (qName.equalsIgnoreCase("Room")) {
-            rooms = new Room[2];
+            
             int room = Integer.parseInt(attributes.getValue("room"));
             int posX = Integer.parseInt(attributes.getValue("posX"));
             int posY = Integer.parseInt(attributes.getValue("posY"));
             int width = Integer.parseInt(attributes.getValue("width"));
             int height = Integer.parseInt(attributes.getValue("height"));
+            roomBeingParsed = new Room(room, posX, posY, width, height);
+            rooms[roomCount] = roomBeingParsed;
+            roomCount++;
+            dungeonBeingParsed.addRoom(roomBeingParsed);
 
         } else if (qName.equalsIgnoreCase("Monster")) {
+
             String name = attributes.getValue("name");
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
             int posX = Integer.parseInt(attributes.getValue("posX"));
             int posY = Integer.parseInt(attributes.getValue("posY"));
-            int type = Integer.parseInt(attributes.getValue("type"));
+            String type = attributes.getValue("type");
             int hp = Integer.parseInt(attributes.getValue("hp"));
             int maxhit = Integer.parseInt(attributes.getValue("maxhit"));
+            monsterBeingParsed = new Monster(posX, posY, type, hp, maxhit, name, room, serial);
 
         } else if (qName.equalsIgnoreCase("Player")) {
+
             String name = attributes.getValue("name");
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
@@ -88,11 +97,13 @@ public class Step1XMLHandler extends DefaultHandler {
             int hp = Integer.parseInt(attributes.getValue("hp"));
             int maxhit = Integer.parseInt(attributes.getValue("maxhit"));
             int hpMoves = Integer.parseInt(attributes.getValue("hpMoves"));
+            playerBeingParsed = new Player(name, hp, hpMoves, maxhit, posX, posY, visible);
 
         } else if (qName.equalsIgnoreCase("CreatureAction")) {
             String name = attributes.getValue("name");
             String type = attributes.getValue("type");
             String actionMessage = attributes.getValue("actionMessage");
+            creatureActionBeingParsed = new CreatureAction(name, type, actionMessage);
 
         } else if (qName.equalsIgnoreCase("posX")) {
             bPosX = true;
@@ -135,25 +146,18 @@ public class Step1XMLHandler extends DefaultHandler {
         } else if (qName.equalsIgnoreCase("height")) {
             room = (Room) roomBeingParsed;
             room.setPosX(Integer.parseInt(data.toString()));
-        } else if (bLocation) {
-            activityBeingParsed.setLocation(data.toString());
-            bLocation = false;
-        } else if (bMeetingTime) {
-            activityBeingParsed.setMeetingTime(data.toString());
-            bMeetingTime = false;
-        } else if (bMeetingDay) {
-            activityBeingParsed.setMeetingDay(data.toString());
-            bMeetingDay = false;
+        } else if (qName.equalsIgnoreCase("hp")) {
+            
+        } else if (qName.equalsIgnoreCase("visible")) {
+            
+        } else if (qName.equalsIgnoreCase("maxhit")) {
+            
+        } else if (qName.equalsIgnoreCase("hpMoves")) {
+            
+        } else if (qName.equalsIgnoreCase("actionMessage")) {
+            
         }
 
-        if (qName.equalsIgnoreCase("Students")) {
-            if (studentCount != maxStudents) {
-                System.out.println("wrong number of students parsed, should be " + maxStudents + ", is " + studentCount);
-            }
-        } else if (qName.equalsIgnoreCase("Student")) {
-            studentBeingParsed = null;
-        } else if (qName.equalsIgnoreCase("Activity")) {
-            activityBeingParsed = null;
-        }
     }
+}
 

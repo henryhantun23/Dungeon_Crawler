@@ -5,12 +5,12 @@ public class Monster extends Creature{
     private String name;
     private int posX;
     private int posY;
-    private char type;
+    private String type;
     private int hp;
     private int maxhit;
     private int id;
 
-    public Monster(int _posX, int _posY, char _type, int _hp, int _maxhit, String _name, int _room, int _serial){
+    public Monster(int _posX, int _posY, String _type, int _hp, int _maxhit, String _name, int _room, int _serial){
         setName(_name);
         setId(_room, _serial);
         setPosX(_posX);
