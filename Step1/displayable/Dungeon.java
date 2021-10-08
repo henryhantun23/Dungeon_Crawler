@@ -24,7 +24,8 @@ public class Dungeon extends Displayable{
         rooms[roomCount++] = room;
     }
 
-    public void getDungeon(String name, int width, int gameHeight){
+
+    public void setDungeon(String name, int width, int topHeight, int gameHeight, int bottomHeight) {
 
     }
     public void addCreature(Creature creature){

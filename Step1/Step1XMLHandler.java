@@ -74,7 +74,7 @@ public class Step1XMLHandler extends DefaultHandler {
             int serial = Integer.parseInt(attributes.getValue("serial"));
             int posX = Integer.parseInt(attributes.getValue("posX"));
             int posY = Integer.parseInt(attributes.getValue("posY"));
-            int type = Integer.parseInt(attributes.getValue("type"));
+            String type = attributes.getValue("type");
             int hp = Integer.parseInt(attributes.getValue("hp"));
             int maxhit = Integer.parseInt(attributes.getValue("maxhit"));
 
@@ -122,29 +122,26 @@ public class Step1XMLHandler extends DefaultHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        Room room;
-        if (qName.equalsIgnoreCase("posX")) {
-            room = (Room) roomBeingParsed;
+        Room room ;
+        if (qName.equalsIgnoreCase("Room")) {
+            room = (Room)roomBeingParsed;
+            room.setId(Integer.parseInt(data.toString()));
+        } else if(qName.equalsIgnoreCase("posX")) {
+            room = (Room)roomBeingParsed;
             room.setPosX(Integer.parseInt(data.toString()));
-        } else if (qName.equalsIgnoreCase("posY")) {
-            room = (Room) roomBeingParsed;
-            room.setPosX(Integer.parseInt(data.toString()));
-        } else if (qName.equalsIgnoreCase("width")) {
-            room = (Room) roomBeingParsed;
-            room.setPosX(Integer.parseInt(data.toString()));
-        } else if (qName.equalsIgnoreCase("height")) {
-            room = (Room) roomBeingParsed;
-            room.setPosX(Integer.parseInt(data.toString()));
-        } else if (bLocation) {
-            activityBeingParsed.setLocation(data.toString());
-            bLocation = false;
-        } else if (bMeetingTime) {
-            activityBeingParsed.setMeetingTime(data.toString());
-            bMeetingTime = false;
-        } else if (bMeetingDay) {
-            activityBeingParsed.setMeetingDay(data.toString());
-            bMeetingDay = false;
+        } else if(qName.equalsIgnoreCase("posY")){
+            room = (Room)roomBeingParsed;
+            room.setPosY(Integer.parseInt(data.toString()));
+        } else if(qName.equalsIgnoreCase("width")) {
+            room = (Room)roomBeingParsed;
+            room.setWidth(Integer.parseInt(data.toString()));
+        } else if(qName.equalsIgnoreCase("height")) {
+            room = (Room)roomBeingParsed;
+            room.setHeight(Integer.parseInt(data.toString()));
+        } else if(qName.equalsIgnoreCase("Monster")){
+
         }
+
 
         if (qName.equalsIgnoreCase("Students")) {
             if (studentCount != maxStudents) {

@@ -4,10 +4,10 @@ import Step1.action.creatureAction.CreatureAction;
 import Step1.displayable.Displayable;
 
 public class Creature extends Displayable{
-
+    private CreatureAction actions;
 
     public void setDeathAction(CreatureAction da){
-        System.out.println("Set death action");
+        actions = da;
 
     }
     /*public void setHitAction(ha){

@@ -23,7 +23,6 @@ public class Room extends Structure{
     public void addMonster (Monster monster){
         monsters[monsterCount++] = monster;
     }
-
     public void setId(int room){
         id = room;
         System.out.println("id set\n");

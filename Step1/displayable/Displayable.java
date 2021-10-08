@@ -47,9 +47,9 @@ public class Displayable {
         type = t;
         System.out.println("type set");
     }
-    public void setIntValue(int v){
+    /*public void setIntValue(int v){
         
-    }
+    }*/
 
     public void setPosX(int x){
         posX = x;
