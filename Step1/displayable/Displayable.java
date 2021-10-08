@@ -6,7 +6,7 @@ public class Displayable {
     private int width;
     private int height;
     private int maxhit;
-    private char type;
+    private String type;
     private int hpm;
     private int hp;
     private int int_val;
@@ -43,7 +43,7 @@ public class Displayable {
         System.out.println("setHP");
     }
 
-    public void setType(char t) {
+    public void setType(String t) {
         type = t;
         System.out.println("type set");
     }

@@ -63,12 +63,23 @@ public class Step1XMLHandler extends DefaultHandler {
         } else if (qName.equalsIgnoreCase("Room")) {
             rooms = new Room[2];
             int room = Integer.parseInt(attributes.getValue("room"));
+<<<<<<< Updated upstream
+=======
+            roomBeingParsed = new Room(room);
+            rooms[roomCount] = roomBeingParsed;
+            roomCount++;
+            dungeonBeingParsed.addRoom(roomBeingParsed);
+>>>>>>> Stashed changes
 
 
         } else if (qName.equalsIgnoreCase("Monster")) {
             String name = attributes.getValue("name");
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
+<<<<<<< Updated upstream
+=======
+            monsterBeingParsed = new Monster(name, room, serial);
+>>>>>>> Stashed changes
 
 
         } else if (qName.equalsIgnoreCase("Player")) {
@@ -79,6 +90,11 @@ public class Step1XMLHandler extends DefaultHandler {
         } else if (qName.equalsIgnoreCase("CreatureAction")) {
             String name = attributes.getValue("name");
             String type = attributes.getValue("type");
+<<<<<<< Updated upstream
+=======
+            String actionMessage = attributes.getValue("actionMessage");
+            creatureActionBeingParsed = new CreatureAction(name, type);
+>>>>>>> Stashed changes
 
 
         } /*else if (qName.equalsIgnoreCase("posX")) {

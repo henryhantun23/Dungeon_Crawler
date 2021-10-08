@@ -12,8 +12,13 @@ public class Room extends Structure{
     private int height;
     private int monsterCount = 0;
     private Monster[] monsters;
+<<<<<<< Updated upstream
     private Player player;
     public Room(int _id,int _posX, int _posY, int _width, int _height){
+=======
+    private Creature creature;
+    public Room(int _id){
+>>>>>>> Stashed changes
         System.out.println("Creating room\n");
         setId(_id);
         setPosX(_posX);
@@ -28,6 +33,7 @@ public class Room extends Structure{
         id = room;
         System.out.println("id set\n");
     }
+
     public void setCreature(Creature Monster){
         creature = Monster;
     }
