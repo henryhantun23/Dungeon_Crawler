@@ -8,21 +8,24 @@ public class Player extends Creature {
     private int hp;
     private int maxhit;
     private int visible;
-    public Player(String _name, int _hp, int _hpm, int _max_hit, int _posX, int _posY, char _type, int maxhit, int _visible) {
-        setHp(_hp);
-        setHpMove(_hpm);
-        setMaxHit(_max_hit);
-        setPosX(_posX);
-        setPosY(_posY);
-        setType(_type);
-        setHp(_hp);
+    private int room;
+    private int serial;
+    public Player(String _name, int _room, int serial) {
+        
         setName(_name);
-        setVisible(_visible);
         System.out.println("Player created");
     }
     public void setName(String _name){
         name = _name;
         System.out.println("name set");
+    }
+    public void setRoom(int _room){
+        room = _room;
+        System.out.println("room set");
+    }
+    public void setSerial(int _serial){
+        serial = _serial;
+        System.out.println("serial set");
     }
 /*
     public void setWeapon(Item sword){

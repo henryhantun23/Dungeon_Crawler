@@ -81,6 +81,7 @@ public class Step1XMLHandler extends DefaultHandler {
             String name = attributes.getValue("name");
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
+            playerBeingParsed = new Player(name, room, serial);
 
         } else if (qName.equalsIgnoreCase("CreatureAction")) {
             String name = attributes.getValue("name");
