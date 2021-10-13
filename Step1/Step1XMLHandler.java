@@ -1,5 +1,6 @@
 package Step1;
 
+import Step1.action.creatureAction.CreatureAction;
 import Step1.displayable.Structure.Room;
 import Step1.displayable.Dungeon;
 import Step1.displayable.creatures.*;
@@ -17,6 +18,8 @@ public class Step1XMLHandler extends DefaultHandler {
     private StringBuilder data = null;
 
     private Room[] rooms;
+    private Monster[] monsters;
+    private Player player;
     private int roomCount = 0;
 
     private Dungeon dungeonBeingParsed = null;
@@ -119,10 +122,21 @@ public class Step1XMLHandler extends DefaultHandler {
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         Room room;
+        Monster monster;
+        Player player;
         if (qName.equalsIgnoreCase("Room")) {
 
         }
         else if(qName.equalsIgnoreCase("posX")) {
+
+        }
+        else if(qName.equalsIgnoreCase("posY")) {
+
+        }
+        else if(qName.equalsIgnoreCase("width")) {
+
+        }
+        else if(qName.equalsIgnoreCase("height")) {
 
         }
 
