@@ -19,7 +19,7 @@ public class Monster extends Creature{
         name = _name;
         System.out.println("name set");
     }
-    public void setId(int _room, int _serial){
+    public void setId(int _room, int _serial) {
         id = (_room * 10) + _serial;
         System.out.println("id set");
     }

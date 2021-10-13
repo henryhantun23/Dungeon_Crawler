@@ -127,22 +127,28 @@ public class Step1XMLHandler extends DefaultHandler {
         CreatureAction action;
         if (qName.equalsIgnoreCase("posX")) {
             room = (Room)roomBeingParsed;
-            room.setPosX(); //ask about parsing ints which setter to use
+            room.setPosX(data); //ask about parsing ints which setter to use
+
         } else if (qName.equalsIgnoreCase("posY")) {
             room = (Room)roomBeingParsed;
             room.setPosY();
+
         } else if (qName.equalsIgnoreCase("width")) {
             room = (Room)roomBeingParsed;
             room.setWidth();
+
         } else if (qName.equalsIgnoreCase("height")) {
             room = (Room)roomBeingParsed;
             room.setHeight();
+
         } else if (qName.equalsIgnoreCase("type")) {
             monster = (Monster)monsterBeingParsed;
             monster.setType();
+
         } else if (qName.equalsIgnoreCase("hp")) {
             monster = (Monster)monsterBeingParsed;
             monster.setHp();
+
         } else if (qName.equalsIgnoreCase("maxhit")) {
             monster = (Monster) monsterBeingParsed;
             monster.setMaxHit();
@@ -150,15 +156,22 @@ public class Step1XMLHandler extends DefaultHandler {
         } else if (qName.equalsIgnoreCase("visible")) {
             player = (Player)playerBeingParsed;
             player.setVisible();
-        } else if (qName.equalsIgnoreCase("actionMessage")){
-            action = (CreatureAction)creatureActionBeingParsed;
+
+        } else if (qName.equalsIgnoreCase("actionMessage")) {
+            action = (CreatureAction) creatureActionBeingParsed;
             CreatureAction.setActionMessage(data.toString());
+
+        } else if (qName.equalsIgnoreCase("CreatureAction")) {
+            creatureActionBeingParsed = null;
         } else if (qName.equalsIgnoreCase("Player")) {
             playerBeingParsed = null;
+
         } else if (qName.equalsIgnoreCase("Monster")) {
             monsterBeingParsed = null;
+
         } else if(qName.equalsIgnoreCase("Room")){
             roomBeingParsed = null;
+
         }
 
     }
