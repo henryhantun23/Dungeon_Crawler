@@ -39,21 +39,21 @@ public class Step1XMLHandler extends DefaultHandler {
     private boolean bHpMoves = false;
     private boolean bActionMessage = false;
 
-    public Dungeon[] getDungeons(){
+    private int posX;
+
+    public Dungeon[] getDungeons() {
         return dungeons;
     }
 
-    public Step1XMLHandler(){
+    public Step1XMLHandler() {
 
     }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-
         if (DEBUG > 1) {
             System.out.println(CLASSID + ".startElement qName: " + qName);
         }
-
         if (qName.equalsIgnoreCase("Dungeon")) {
             String name = attributes.getValue("name");
             int width = Integer.parseInt(attributes.getValue("width"));
@@ -124,30 +124,43 @@ public class Step1XMLHandler extends DefaultHandler {
         Room room;
         Monster monster;
         Player player;
-        if (qName.equalsIgnoreCase("Room")) {
+        CreatureAction action;
+        if (qName.equalsIgnoreCase("posX")) {
+            room = (Room)roomBeingParsed;
+            room.setPosX(); //ask about parsing ints which setter to use
+        } else if (qName.equalsIgnoreCase("posY")) {
+            room = (Room)roomBeingParsed;
+            room.setPosY();
+        } else if (qName.equalsIgnoreCase("width")) {
+            room = (Room)roomBeingParsed;
+            room.setWidth();
+        } else if (qName.equalsIgnoreCase("height")) {
+            room = (Room)roomBeingParsed;
+            room.setHeight();
+        } else if (qName.equalsIgnoreCase("type")) {
+            monster = (Monster)monsterBeingParsed;
+            monster.setType();
+        } else if (qName.equalsIgnoreCase("hp")) {
+            monster = (Monster)monsterBeingParsed;
+            monster.setHp();
+        } else if (qName.equalsIgnoreCase("maxhit")) {
+            monster = (Monster) monsterBeingParsed;
+            monster.setMaxHit();
 
+        } else if (qName.equalsIgnoreCase("visible")) {
+            player = (Player)playerBeingParsed;
+            player.setVisible();
+        } else if (qName.equalsIgnoreCase("actionMessage")){
+            action = (CreatureAction)creatureActionBeingParsed;
+            CreatureAction.setActionMessage(data.toString());
+        } else if (qName.equalsIgnoreCase("Player")) {
+            playerBeingParsed = null;
+        } else if (qName.equalsIgnoreCase("Monster")) {
+            monsterBeingParsed = null;
+        } else if(qName.equalsIgnoreCase("Room")){
+            roomBeingParsed = null;
         }
-        else if(qName.equalsIgnoreCase("posX")) {
 
-        }
-        else if(qName.equalsIgnoreCase("posY")) {
-
-        }
-        else if(qName.equalsIgnoreCase("width")) {
-
-        }
-        else if(qName.equalsIgnoreCase("height")) {
-
-        }
-
-
-
-
-
-        } else if (qName.equalsIgnoreCase("Student")) {
-            studentBeingParsed = null;
-        } else if (qName.equalsIgnoreCase("Activity")) {
-            activityBeingParsed = null;
-        }
     }
+}
 

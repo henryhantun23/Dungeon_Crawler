@@ -12,19 +12,13 @@ public class Room extends Structure{
     private int height;
     private int monsterCount = 0;
     private Monster[] monsters;
-<<<<<<< Updated upstream
+
     private Player player;
-    public Room(int _id,int _posX, int _posY, int _width, int _height){
-=======
+
     private Creature creature;
     public Room(int _id){
->>>>>>> Stashed changes
         System.out.println("Creating room\n");
         setId(_id);
-        setPosX(_posX);
-        setPosY(_posY);
-        setWidth(_width);
-        setHeight(_height);
     }
     public void addMonster (Monster monster){
         monsters[monsterCount++] = monster;
