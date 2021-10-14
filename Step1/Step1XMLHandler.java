@@ -2,6 +2,7 @@ package Step1;
 
 import Step1.action.creatureAction.CreatureAction;
 import Step1.displayable.Structure.Room;
+import Step1.displayable.Displayable;
 import Step1.displayable.Dungeon;
 import Step1.displayable.creatures.*;
 import Step1.action.*;
@@ -21,6 +22,8 @@ public class Step1XMLHandler extends DefaultHandler {
     private Monster[] monsters;
     private Player player;
     private int roomCount = 0;
+    private Displayable[] displayable = new Displayable[10];
+    private int disNum = 0;
 
     private Dungeon dungeonBeingParsed = null;
     private Room roomBeingParsed = null;
@@ -28,6 +31,7 @@ public class Step1XMLHandler extends DefaultHandler {
     private Player playerBeingParsed = null;
     private Action creatureActionBeingParsed = null;
 
+    /*
     private boolean bPosX = false;
     private boolean bPosY = false;
     private boolean bWidth = false;
@@ -38,6 +42,7 @@ public class Step1XMLHandler extends DefaultHandler {
     private boolean bVisible = false;
     private boolean bHpMoves = false;
     private boolean bActionMessage = false;
+    */
 
     private int posX;
 
@@ -61,16 +66,17 @@ public class Step1XMLHandler extends DefaultHandler {
             int gameHeight = Integer.parseInt(attributes.getValue("gameHeight"));
             int bottomHeight = Integer.parseInt(attributes.getValue("bottomHeight"));
             dungeonBeingParsed = new Dungeon(name, width, topHeight, gameHeight, bottomHeight);
+            displayable[disNum] = dungeonBeingParsed;
+            disNum++;
 
         } else if (qName.equalsIgnoreCase("Rooms")) {
 
         } else if (qName.equalsIgnoreCase("Room")) {
-            rooms = new Room[2];
             int room = Integer.parseInt(attributes.getValue("room"));
             roomBeingParsed = new Room(room);
-            rooms[roomCount] = roomBeingParsed;
-            roomCount++;
-            dungeonBeingParsed.addRoom(roomBeingParsed);
+            dungeonBeingParsed.addRoom(roomBeingParsed); //arraylist implementation
+            displayable[disNum] = roomBeingParsed;
+            disNum++;
 
 
         } else if (qName.equalsIgnoreCase("Monster")) {
@@ -78,6 +84,9 @@ public class Step1XMLHandler extends DefaultHandler {
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
             monsterBeingParsed = new Monster(name, room, serial);
+            roomBeingParsed.addCreature(monsterBeingParsed); // add the creature to the room
+            displayable[disNum] = monsterBeingParsed;
+            disNum++;
 
 
         } else if (qName.equalsIgnoreCase("Player")) {
@@ -85,6 +94,9 @@ public class Step1XMLHandler extends DefaultHandler {
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
             playerBeingParsed = new Player(name, room, serial);
+            roomBeingParsed.addCreature(playerBeingParsed);
+            displayable[disNum] = playerBeingParsed;
+            disNum++;
 
         } else if (qName.equalsIgnoreCase("CreatureAction")) {
             String name = attributes.getValue("name");
@@ -127,50 +139,65 @@ public class Step1XMLHandler extends DefaultHandler {
         CreatureAction action;
         if (qName.equalsIgnoreCase("posX")) {
             room = (Room)roomBeingParsed;
-            room.setPosX(data); //ask about parsing ints which setter to use
+            //room.setPosX(data); //ask about parsing ints which setter to use
+            displayable[disNum].setPosX(Integer.parseInt(data.toString()));
 
         } else if (qName.equalsIgnoreCase("posY")) {
             room = (Room)roomBeingParsed;
-            room.setPosY();
+            //room.setPosY();
+            displayable[disNum].setPosY(Integer.parseInt(data.toString()));
 
         } else if (qName.equalsIgnoreCase("width")) {
             room = (Room)roomBeingParsed;
-            room.setWidth();
+            //room.setWidth();
+            displayable[disNum].setWidth(Integer.parseInt(data.toString()));
+
 
         } else if (qName.equalsIgnoreCase("height")) {
             room = (Room)roomBeingParsed;
-            room.setHeight();
+            //room.setHeight();
+            displayable[disNum].setHeight(Integer.parseInt(data.toString()));
 
         } else if (qName.equalsIgnoreCase("type")) {
             monster = (Monster)monsterBeingParsed;
-            monster.setType();
+            //monster.setType();
+            displayable[disNum].setType(data.toString());
 
         } else if (qName.equalsIgnoreCase("hp")) {
             monster = (Monster)monsterBeingParsed;
-            monster.setHp();
+            //monster.setHp();
+            displayable[disNum].setHp(Integer.parseInt(data.toString()));
 
         } else if (qName.equalsIgnoreCase("maxhit")) {
             monster = (Monster) monsterBeingParsed;
-            monster.setMaxHit();
+            //monster.setMaxHit();
+            displayable[disNum].setMaxHit(Integer.parseInt(data.toString()));
 
         } else if (qName.equalsIgnoreCase("visible")) {
             player = (Player)playerBeingParsed;
-            player.setVisible();
+            //player.setVisible();
+            displayable[disNum].setVisible(Integer.parseInt(data.toString()));
 
         } else if (qName.equalsIgnoreCase("actionMessage")) {
             action = (CreatureAction) creatureActionBeingParsed;
-            CreatureAction.setActionMessage(data.toString());
+            //CreatureAction.setActionMessage(data.toString());
+            displayable[disNum].setActionMessage(data.toString());
 
         } else if (qName.equalsIgnoreCase("CreatureAction")) {
             creatureActionBeingParsed = null;
+            disNum--;
         } else if (qName.equalsIgnoreCase("Player")) {
             playerBeingParsed = null;
+            disNum--;
 
         } else if (qName.equalsIgnoreCase("Monster")) {
             monsterBeingParsed = null;
+            disNum--;
 
         } else if(qName.equalsIgnoreCase("Room")){
             roomBeingParsed = null;
+            disNum--;
+            // decrement where you are in displayable stack
 
         }
 

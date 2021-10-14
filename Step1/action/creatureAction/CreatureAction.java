@@ -21,5 +21,5 @@ public class CreatureAction extends Action{
     //     System.out.println("Creating endgame player action");
     //     setMessage("Player is killed!");
 
-    }
+    
 }

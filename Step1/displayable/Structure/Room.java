@@ -3,6 +3,7 @@ package Step1.displayable.Structure;
 import Step1.displayable.creatures.Creature;
 import Step1.displayable.creatures.Monster;
 import Step1.displayable.creatures.Player;
+import java.util.*;
 
 public class Room extends Structure{
     private int id;
@@ -11,7 +12,7 @@ public class Room extends Structure{
     private int width;
     private int height;
     private int monsterCount = 0;
-    private Monster[] monsters;
+    private List<Monster> monsters = new ArrayList<Monster>(); // Arraylist of monsters + items
 
     private Player player;
 
@@ -21,7 +22,7 @@ public class Room extends Structure{
         setId(_id);
     }
     public void addMonster (Monster monster){
-        monsters[monsterCount++] = monster;
+        monsters.add(monster);
     }
     public void setId(int room){
         id = room;
