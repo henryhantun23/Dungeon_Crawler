@@ -48,7 +48,7 @@ public class Step1XMLHandler extends DefaultHandler {
     */
 
     public Dungeon[] getDungeons() {
-        return dungeons;
+        return Dungeon;
     }
 
     public Step1XMLHandler() {
@@ -213,5 +213,6 @@ public class Step1XMLHandler extends DefaultHandler {
         }
 
     }
-}
+
+
 

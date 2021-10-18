@@ -4,9 +4,10 @@ import Step1.action.Action;
 import Step1.displayable.creatures.Creature;
 
 public class CreatureAction extends Action{
+    private static String message;
     private String action_name;
     private String action_type;
-    public String message;
+
 
     public CreatureAction(String _action_name, String _action_type){
         action_name = _action_name;
