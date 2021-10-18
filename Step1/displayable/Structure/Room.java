@@ -24,6 +24,9 @@ public class Room extends Structure{
     public void addMonster (Monster monster){
         monsters.add(monster);
     }
+    public void addPlayer (Player player) {
+        
+    }
     public void setId(int room){
         id = room;
         System.out.println("id set\n");

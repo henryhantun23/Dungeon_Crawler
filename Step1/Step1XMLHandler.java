@@ -1,11 +1,13 @@
 package Step1;
 
-import Step1.action.creatureAction.CreatureAction;
+
+import Step1.displayable.Structure.Passage;
 import Step1.displayable.Structure.Room;
 import Step1.displayable.Displayable;
 import Step1.displayable.Dungeon;
 import Step1.displayable.creatures.*;
 import Step1.action.*;
+import Step1.action.creatureAction.CreatureAction;
 import java.util.ArrayList;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -22,7 +24,7 @@ public class Step1XMLHandler extends DefaultHandler {
     private Monster[] monsters;
     private Player player;
     private int roomCount = 0;
-    private Displayable[] displayable = new Displayable[10];
+    private Displayable[] displayable = new Displayable[10];//parse queue?
     private int disNum = 0;
 
     private Dungeon dungeonBeingParsed = null;
@@ -30,6 +32,7 @@ public class Step1XMLHandler extends DefaultHandler {
     private Monster monsterBeingParsed = null;
     private Player playerBeingParsed = null;
     private Action creatureActionBeingParsed = null;
+    private Passage passageBeingParsed = null;
 
     /*
     private boolean bPosX = false;
@@ -43,8 +46,6 @@ public class Step1XMLHandler extends DefaultHandler {
     private boolean bHpMoves = false;
     private boolean bActionMessage = false;
     */
-
-    private int posX;
 
     public Dungeon[] getDungeons() {
         return dungeons;
@@ -84,7 +85,7 @@ public class Step1XMLHandler extends DefaultHandler {
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
             monsterBeingParsed = new Monster(name, room, serial);
-            roomBeingParsed.addCreature(monsterBeingParsed); // add the creature to the room
+            roomBeingParsed.addMonster(monsterBeingParsed); // add the creature to the room
             displayable[disNum] = monsterBeingParsed;
             disNum++;
 
@@ -104,8 +105,15 @@ public class Step1XMLHandler extends DefaultHandler {
             String actionMessage = attributes.getValue("actionMessage");
             creatureActionBeingParsed = new CreatureAction(name, type);
 
+        } /*else if (qName.equalsIgnoreCase("Passages"));
 
-        } /*else if (qName.equalsIgnoreCase("posX")) {
+        } else if (qName.equalsIgnoreCase("Passage")) {
+            int room1 = Integer.parseInt(attributes.getValue("room1"));
+            int room2 = Integer.parseInt(attributes.getValue("room2"));
+            passageBeingParsed = new Passage(room1, room2);
+
+        }
+            /*else if (qName.equalsIgnoreCase("posX")) {
             bPosX = true;
         } else if (qName.equalsIgnoreCase("posY")) {
             bPosY = true;
@@ -199,6 +207,9 @@ public class Step1XMLHandler extends DefaultHandler {
             disNum--;
             // decrement where you are in displayable stack
 
+        } else if(qName.equalsIgnoreCase("Dungeon")) {
+            dungeonBeingParsed = null;
+            disNum--;
         }
 
     }

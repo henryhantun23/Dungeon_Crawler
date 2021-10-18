@@ -10,9 +10,11 @@ public class Player extends Creature {
     private int visible;
     private int room;
     private int serial;
-    public Player(String _name, int _room, int serial) {
+    public Player(String _name, int _room, int _serial) {
         
         setName(_name);
+        setRoom(_room);
+        setSerial(_serial);
         System.out.println("Player created");
     }
     public void setName(String _name){

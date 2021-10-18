@@ -6,14 +6,14 @@ import Step1.displayable.creatures.Creature;
 public class CreatureAction extends Action{
     private String action_name;
     private String action_type;
-    private String message;
+    public String message;
 
     public CreatureAction(String _action_name, String _action_type){
         action_name = _action_name;
         action_type = _action_type;
     }
 
-    public void setActionMessage(String msg){
+    public static void setActionMessage(String msg){
         message = msg;
         System.out.println(msg + "\n");
     }
