@@ -1,13 +1,12 @@
 package Step1;
+import Step1.displayable.Dungeon;
 import java.io.File;
 import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
 import org.xml.sax.SAXException;
 
-import Step1.displayable.Dungeon;
 
 public class Test {
 
@@ -18,13 +17,6 @@ public class Test {
         String fileName = null;
         switch (args.length) {
         case 1:
-           /******************************************************************
-            * note that the relative file path may depend on what IDE you are
-	    * using.  You might needs to add to the beginning of the filename, 
-            * e.g., filename = "src/xmlfiles/" + args[0]; worked for me in
-            * netbeans, what is here works for me from the command line in
-            * linux.
-            ******************************************************************/
            fileName = args[0];
            break;
         default:
@@ -47,12 +39,12 @@ public class Test {
 	    // just copy this.  This will parse the xml file given by fileName
             saxParser.parse(new File(fileName), handler);
 	    // This will change depending on what kind of XML we are parsing
-            Dungeon dungeon = handler.getDungeon();
+            Dungeon dungeon = handler.getDungeons();
 	    // print out all of the students.  This will change depending on 
 	    // what kind of XML we are parsing
             //for (Student student : students) {
                 //System.out.println(student);
-            }
+
             /*
              * the above is a different form of 
              for (int i = 0; i < students.length; i++) {

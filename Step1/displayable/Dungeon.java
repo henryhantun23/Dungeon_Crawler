@@ -20,9 +20,11 @@ public class Dungeon extends Displayable{
         gameHeight = _gameHeight;
         bottomHeight = _bottomHeight;
     }
+
     public void addRoom(Room room){
         rooms[roomCount++] = room;
     }
+
 
 
     public void setDungeon(String name, int width, int topHeight, int gameHeight, int bottomHeight) {
