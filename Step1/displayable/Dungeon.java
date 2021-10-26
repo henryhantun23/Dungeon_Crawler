@@ -21,8 +21,9 @@ public class Dungeon extends Displayable{
         bottomHeight = _bottomHeight;
     }
 
-    public void addRoom(Room room){
-        rooms[roomCount++] = room;
+    public void addRoom(Room room){ //use array lists
+        System.out.println("added room to dungeon.");
+        //rooms[roomCount++] = room;
     }
 
 
