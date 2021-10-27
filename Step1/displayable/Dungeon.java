@@ -4,6 +4,7 @@ import Step1.displayable.Structure.Passage;
 import Step1.displayable.Structure.Room;
 import Step1.displayable.creatures.Creature;
 import Step1.displayable.item.Item;
+import java.util.*;
 
 public class Dungeon extends Displayable{
     private String name;
@@ -12,19 +13,26 @@ public class Dungeon extends Displayable{
     private int gameHeight;
     private int bottomHeight;
     private int roomCount = 0;
-    private Room[] rooms;
+    //private Room[] rooms;
+
+    private List<Room> rooms = new ArrayList<Room>();
+
     public Dungeon(String _name, int _width, int _topHeight, int _gameHeight, int _bottomHeight){
         name = _name;
         width = _width;
         topHeight = _topHeight;
         gameHeight = _gameHeight;
         bottomHeight = _bottomHeight;
+        //System.out.println("Creating dungeon\n");
     }
 
+    
     public void addRoom(Room room){ //use array lists
-        System.out.println("added room to dungeon.");
+        //System.out.println("added room to dungeon.");
         //rooms[roomCount++] = room;
+        rooms.add(room);
     }
+    
 
 
 

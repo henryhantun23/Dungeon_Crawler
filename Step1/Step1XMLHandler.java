@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+import Step1.Step1XMLHandler;
 
 public class Step1XMLHandler extends DefaultHandler {
 
@@ -35,19 +36,6 @@ public class Step1XMLHandler extends DefaultHandler {
     private Action creatureActionBeingParsed = null;
     private Passage passageBeingParsed = null;
 
-    /*
-    private boolean bPosX = false;
-    private boolean bPosY = false;
-    private boolean bWidth = false;
-    private boolean bHeight = false;
-    private boolean bType = false;
-    private boolean bHp = false;
-    private boolean bMaxhit = false;
-    private boolean bVisible = false;
-    private boolean bHpMoves = false;
-    private boolean bActionMessage = false;
-    */
-
     public Dungeon getDungeons(){
         return dungeon;
     }
@@ -68,36 +56,39 @@ public class Step1XMLHandler extends DefaultHandler {
             int bottomHeight = Integer.parseInt(attributes.getValue("bottomHeight"));
             dungeonBeingParsed = new Dungeon(name, width, topHeight, gameHeight, bottomHeight);
             displayable[disNum] = dungeonBeingParsed;
-            disNum++;
+            //disNum++;
 
         } else if (qName.equalsIgnoreCase("Rooms")) {
 
         } else if (qName.equalsIgnoreCase("Room")) {
+            disNum++;
             int room = Integer.parseInt(attributes.getValue("room"));
             roomBeingParsed = new Room(room);
             dungeonBeingParsed.addRoom(roomBeingParsed); //arraylist implementation
             displayable[disNum] = roomBeingParsed;
-            disNum++;
+            //disNum++;
 
 
         } else if (qName.equalsIgnoreCase("Monster")) {
+            disNum++;
             String name = attributes.getValue("name");
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
             monsterBeingParsed = new Monster(name, room, serial);
             roomBeingParsed.addMonster(monsterBeingParsed); // add the creature to the room
             displayable[disNum] = monsterBeingParsed;
-            disNum++;
+            //disNum++;
 
 
         } else if (qName.equalsIgnoreCase("Player")) {
+            disNum++;
             String name = attributes.getValue("name");
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
             playerBeingParsed = new Player(name, room, serial);
             roomBeingParsed.addPlayer(playerBeingParsed);
             displayable[disNum] = playerBeingParsed;
-            disNum++;
+            
 
         } else if (qName.equalsIgnoreCase("CreatureAction")) {
             String name = attributes.getValue("name");
@@ -141,57 +132,56 @@ public class Step1XMLHandler extends DefaultHandler {
 
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
-        Room room;
-        Monster monster;
-        Player player;
-        CreatureAction action;
+        
         if (qName.equalsIgnoreCase("posX")) {
-            room = (Room) roomBeingParsed;
-            //room.setPosX(data); //ask about parsing ints which setter to use
+            //room = (Room) roomBeingParsed;
+            //room.setPosX(data); 
             displayable[disNum].setPosX(Integer.parseInt(data.toString()));
-
+            
         } else if (qName.equalsIgnoreCase("posY")) {
-            room = (Room) roomBeingParsed;
+            //room = (Room) roomBeingParsed;
             //room.setPosY();
             displayable[disNum].setPosY(Integer.parseInt(data.toString()));
 
         } else if (qName.equalsIgnoreCase("width")) {
-            room = (Room) roomBeingParsed;
+            //room = (Room) roomBeingParsed;
             //room.setWidth();
             displayable[disNum].setWidth(Integer.parseInt(data.toString()));
 
 
         } else if (qName.equalsIgnoreCase("height")) {
-            room = (Room) roomBeingParsed;
+            //room = (Room) roomBeingParsed;
             //room.setHeight();
             displayable[disNum].setHeight(Integer.parseInt(data.toString()));
 
         } else if (qName.equalsIgnoreCase("type")) {
-            monster = (Monster) monsterBeingParsed;
+            //monster = (Monster) monsterBeingParsed;
             //monster.setType();
             displayable[disNum].setType(data.toString());
 
         } else if (qName.equalsIgnoreCase("hp")) {
-            monster = (Monster) monsterBeingParsed;
+            //monster = (Monster) monsterBeingParsed;
             //monster.setHp();
             displayable[disNum].setHp(Integer.parseInt(data.toString()));
 
         } else if (qName.equalsIgnoreCase("maxhit")) {
-            monster = (Monster) monsterBeingParsed;
+            //monster = (Monster) monsterBeingParsed;
             //monster.setMaxHit();
             displayable[disNum].setMaxHit(Integer.parseInt(data.toString()));
 
         } else if (qName.equalsIgnoreCase("visible")) {
-            player = (Player) playerBeingParsed;
+            //player = (Player) playerBeingParsed;
             //player.setVisible();
             displayable[disNum].setVisible(Integer.parseInt(data.toString()));
 
-        /*} else if (qName.equalsIgnoreCase("actionMessage")) {
-            action = (CreatureAction) creatureActionBeingParsed;
+        } else if (qName.equalsIgnoreCase("actionMessage")) {
+            //action = (CreatureAction) creatureActionBeingParsed;
             //CreatureAction.setActionMessage(data.toString());
-            displayable[disNum].setActionMessage(data.toString());*/
-
-        } else if (qName.equalsIgnoreCase("CreatureAction")) {
+            displayable[disNum].setActionMessage(data.toString());
+            
+        }
+        
+        else if (qName.equalsIgnoreCase("CreatureAction")) {
             creatureActionBeingParsed = null;
             disNum--;
         } else if (qName.equalsIgnoreCase("Player")) {
@@ -212,6 +202,15 @@ public class Step1XMLHandler extends DefaultHandler {
             disNum--;
         }
 
+    }
+
+    @Override
+    public void characters(char ch[], int start, int length) throws SAXException {
+        data.append(new String(ch, start, length));
+        if (DEBUG > 1) {
+            System.out.println(CLASSID + ".characters: " + new String(ch, start, length));
+            System.out.flush();
+        }
     }
 
 }

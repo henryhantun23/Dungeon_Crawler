@@ -16,7 +16,7 @@ public class CreatureAction extends Action{
 
     public static void setActionMessage(String msg){
         message = msg;
-        System.out.println(msg + "\n");
+        System.out.println(msg);
     }
     // public CreatureAction(Creature owner){
     //     System.out.println("Creating endgame player action");

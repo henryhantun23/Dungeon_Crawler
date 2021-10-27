@@ -1,5 +1,6 @@
 package Step1.displayable;
 
+
 public class Displayable {
     private int posX;
     private int posY;
@@ -12,6 +13,7 @@ public class Displayable {
     private int int_val;
     private int visible;
     private int invisible;
+    private String message;
 
 
     public Displayable(){ //what does this function do?
@@ -53,18 +55,24 @@ public class Displayable {
 
     public void setPosX(int x){
         posX = x;
-        System.out.println("pos x set");
+        System.out.println("x pos set");
+        
     }
     public void setPosY(int y){
         posY = y;
-        System.out.println("pos y set");
+        System.out.println("y pos set");
     }
     public void setWidth(int x){
         width = x;
-        System.out.println("set width\n");
+        System.out.println("set width");
     }
     public void setHeight(int y){
         height = y;
-        System.out.println("set height\n");
+        System.out.println("set height");
+    }
+
+    public void setActionMessage(String msg){
+        message = msg;
+        System.out.println(msg);
     }
 }

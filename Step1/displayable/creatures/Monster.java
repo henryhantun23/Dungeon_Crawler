@@ -11,8 +11,10 @@ public class Monster extends Creature{
     private int id;
 
     public Monster(String _name, int _room, int _serial){
-        System.out.println("monster created");
+        
         setName(_name);
+        System.out.println("monster created");
+        System.out.println("name set");
         setId(_room, _serial);
     }
     public void setName(String _name){

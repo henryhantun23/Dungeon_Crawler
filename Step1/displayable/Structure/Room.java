@@ -7,21 +7,18 @@ import java.util.*;
 
 public class Room extends Structure{
     private int id;
-    private int posX;
-    private int posY;
-    private int width;
-    private int height;
-    private int monsterCount = 0;
+    public Room(int _id){
+        System.out.println("Creating room");
+        setId(_id);
+    }
     private List<Monster> monsters = new ArrayList<Monster>(); // Arraylist of monsters + items
 
     private Player player;
 
     private Creature creature;
-    public Room(int _id){
-        System.out.println("Creating room\n");
-        setId(_id);
-    }
+
     public void addMonster (Monster monster){
+        System.out.println("add creature");
         monsters.add(monster);
     }
     public Player addPlayer (Player player) {
@@ -30,12 +27,13 @@ public class Room extends Structure{
 
     public void setId(int room){
         id = room;
-        System.out.println("id set\n");
+        System.out.println("id set");
     }
 
     public void setCreature(Creature Monster){
         creature = Monster;
     }
+
     /*
     public String toString(){
         String str = "Room: \n";
