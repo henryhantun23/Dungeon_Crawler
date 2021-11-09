@@ -29,7 +29,6 @@ public class Player extends Creature {
         serial = _serial;
         System.out.println("serial set");
     }
-    @Override
     public char getChar(){
         return '@';
     }
