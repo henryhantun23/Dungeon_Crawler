@@ -15,4 +15,7 @@ public class Armor extends Item{
         id = (_room * 30) + _serial;
         System.out.println("Armor ID set");
     }
+    public char getChar(){
+        return ']';
+    }
 }

@@ -116,6 +116,7 @@ public class Step1XMLHandler extends DefaultHandler {
             int serial = Integer.parseInt(attributes.getValue("serial"));
             armorBeingParsed = new Armor(name, room, serial);
             roomBeingParsed.addArmor(armorBeingParsed);
+            displayable[disNum] = armorBeingParsed;
         }
         else if(qName.equalsIgnoreCase("Sword")) {
             disNum++;
@@ -124,6 +125,8 @@ public class Step1XMLHandler extends DefaultHandler {
             int serial = Integer.parseInt(attributes.getValue("serial"));
             swordBeingParsed = new Sword(name, room, serial);
             roomBeingParsed.addSword(swordBeingParsed);
+            displayable[disNum] = swordBeingParsed;
+
         }
 
         data = new StringBuilder();
@@ -171,6 +174,7 @@ public class Step1XMLHandler extends DefaultHandler {
         } else if (qName.equalsIgnoreCase("visible")) {
             //player = (Player) playerBeingParsed;
             //player.setVisible();
+            System.out.println("disNum = " + disNum);
             displayable[disNum].setVisible(Integer.parseInt(data.toString()));
 
         } else if (qName.equalsIgnoreCase("actionMessage")) {
@@ -184,7 +188,7 @@ public class Step1XMLHandler extends DefaultHandler {
         
         else if (qName.equalsIgnoreCase("CreatureAction")) {
             creatureActionBeingParsed = null;
-            disNum--;
+            //disNum--;
         } else if (qName.equalsIgnoreCase("Player")) {
             playerBeingParsed.globalize(roomBeingParsed.getPosX(), roomBeingParsed.getPosY());
             playerBeingParsed = null;
@@ -210,6 +214,7 @@ public class Step1XMLHandler extends DefaultHandler {
             armorBeingParsed.globalize(roomBeingParsed.getPosX(), roomBeingParsed.getPosY());
             armorBeingParsed = null;
             disNum--;
+
         } else if(qName.equalsIgnoreCase("Sword")){
             swordBeingParsed.globalize(roomBeingParsed.getPosX(), roomBeingParsed.getPosY());
             swordBeingParsed = null;

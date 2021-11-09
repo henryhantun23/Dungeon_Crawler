@@ -7,6 +7,6 @@ import java.util.*;
 
 public class Structure extends Displayable{
 
-    private List<Passage> passages = new ArrayList<Passage>();
+    
 
 }

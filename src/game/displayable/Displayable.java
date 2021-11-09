@@ -21,6 +21,13 @@ public class Displayable {
 
     }
 
+    public int getWidth(){
+        return width;
+    }
+    public int getHeight(){
+        return height;
+    }
+
     public char getChar(){
         return type.charAt(0);
     }
