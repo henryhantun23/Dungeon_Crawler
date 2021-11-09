@@ -15,8 +15,6 @@ public class Room extends Structure{
 
     private Player player;
 
-    private Creature creature;
-
     public void addMonster (Monster monster){
         System.out.println("add creature");
         monsters.add(monster);
@@ -30,8 +28,14 @@ public class Room extends Structure{
         System.out.println("id set");
     }
 
-    public void setCreature(Creature Monster){
-        creature = Monster;
+    public void draw(){
+        // TODO: draw the room's wall and floors
+        for(int i=0; i < monsters.size(); i++){
+            monsters.get(i).draw();
+        }
+        if(player != null){
+            player.draw();
+        }
     }
 
     /*

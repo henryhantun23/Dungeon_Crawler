@@ -1,5 +1,6 @@
 package game.displayable;
 
+import game.ObjectDisplayGrid;
 
 public class Displayable {
     private int posX;
@@ -18,6 +19,10 @@ public class Displayable {
 
     public Displayable(){ //what does this function do?
 
+    }
+
+    public char getChar(){
+        return type.charAt(0);
     }
 
     public void setInvisible(int invis){
@@ -74,5 +79,10 @@ public class Displayable {
     public void setActionMessage(String msg){
         message = msg;
         System.out.println(msg);
+    }
+
+    public void draw(){
+        ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
+        grid.addObjectToDisplay(this, posX, posY);
     }
 }

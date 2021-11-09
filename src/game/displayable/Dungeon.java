@@ -5,6 +5,7 @@ import game.displayable.Structure.Room;
 import game.displayable.creatures.Creature;
 import game.displayable.item.Item;
 import java.util.*;
+import game.ObjectDisplayGrid;
 
 public class Dungeon extends Displayable{
     private String name;
@@ -14,6 +15,7 @@ public class Dungeon extends Displayable{
     private int bottomHeight;
     private int roomCount = 0;
     //private Room[] rooms;
+    
 
     private List<Room> rooms = new ArrayList<Room>();
 
@@ -33,8 +35,6 @@ public class Dungeon extends Displayable{
         rooms.add(room);
     }
     
-
-
 
     public void setDungeon(String name, int width, int topHeight, int gameHeight, int bottomHeight) {
 
@@ -57,6 +57,12 @@ public class Dungeon extends Displayable{
         return width;
     }
 
+    public void draw(){
+        ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
+        for(int i = 0; i < rooms.size(); i++){
+            rooms.get(i).draw(); // drawing all the rooms
+        }
+    }
 
     /*
     public String toString() {

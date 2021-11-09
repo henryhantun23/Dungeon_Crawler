@@ -1,6 +1,8 @@
 package game;
 
 import game.asciiPanel.AsciiPanel;
+import game.displayable.Displayable;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -12,20 +14,37 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
     private static final String CLASSID = ".ObjectDisplayGrid"; 
 
     private static AsciiPanel terminal;
-    private Char[][] objectGrid = null; // 2d array of char objects
+    private Displayable[][] objectGrid = null; // 2d array of char objects
 
     private List<InputObserver> inputObservers = null;
 
     private static int height;
     private static int width;
+    private static ObjectDisplayGrid instance = null;
 
-    public ObjectDisplayGrid(int _width, int _height) {
+    // csn add more parameters, call before getInstance
+    public static void setGridSize(int _width, int _height){
+        if(instance != null){
+            System.out.println("Setting grid size after object display grid was already created");
+        }
         width = _width;
         height = _height;
+    }
+
+    public static ObjectDisplayGrid getInstance(){
+        if(instance == null){
+            instance = new ObjectDisplayGrid(width, height);
+        }
+        return instance;
+    }
+
+    private ObjectDisplayGrid(int _width, int _height) {
+        //width = _width;
+        //height = _height;
 
         terminal = new AsciiPanel(width, height);
 
-        objectGrid = new Char[width][height];
+        objectGrid = new Displayable[width][height];
 
         //initializeDisplay(); // drawing dots across screen
 
@@ -78,16 +97,6 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
     public void keyReleased(KeyEvent e) {
     }
 
-    public final void initializeDisplay() { 
-        Char ch = new Char('.');
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                addObjectToDisplay(ch, i, j);
-            }
-        }
-        terminal.repaint();
-    }
-
     public void fireUp() {
         if (this.requestFocusInWindow()) {
             System.out.println(CLASSID + ".ObjectDisplayGrid(...) requestFocusInWindow Succeeded");
@@ -96,7 +105,7 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         }
     }
 
-    public void addObjectToDisplay(Char ch, int x, int y) {
+    public void addObjectToDisplay(Displayable ch, int x, int y) {
         if ((0 <= x) && (x < objectGrid.length)) {
             if ((0 <= y) && (y < objectGrid[0].length)) {
                 objectGrid[x][y] = ch;

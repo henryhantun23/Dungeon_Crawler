@@ -22,7 +22,6 @@ public class Step1XMLHandler extends DefaultHandler {
     private Room[] rooms;
     private Monster[] monsters;
     private Player player;
-    private Dungeon dungeon;
     private int roomCount = 0;
     private Displayable[] displayable = new Displayable[10];//parse queue?
     private int disNum = 0;
@@ -35,7 +34,7 @@ public class Step1XMLHandler extends DefaultHandler {
     private Passage passageBeingParsed = null;
 
     public Dungeon getDungeons(){
-        return dungeon;
+        return dungeonBeingParsed;
     }
     public Step1XMLHandler() {
 
@@ -196,7 +195,7 @@ public class Step1XMLHandler extends DefaultHandler {
             // decrement where you are in game.displayable stack
 
         } else if (qName.equalsIgnoreCase("Dungeon")) {
-            dungeonBeingParsed = null;
+            //dungeonBeingParsed = null;
             disNum--;
         }
 

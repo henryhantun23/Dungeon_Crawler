@@ -13,7 +13,6 @@ import game.displayable.*;
 public class Rogue {
 
     public static void main(String[] args) {
-        private static ObjectDisplayGrid displayGrid = null;
 
 	// check if a filename is passed in.  If not, print a usage message.
 	// If it is, open the file
@@ -58,7 +57,9 @@ public class Rogue {
         int width = dungeon.getWidth();
         int height = dungeon.getGameHeight();
 
-        displayGrid = new ObjectDisplayGrid(width, height);
+        ObjectDisplayGrid.setGridSize(width, height);
+        ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
+        dungeon.draw();
 
         // these lines should be copied exactly
         } catch (ParserConfigurationException | SAXException | IOException e) {
