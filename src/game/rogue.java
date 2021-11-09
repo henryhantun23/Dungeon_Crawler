@@ -10,7 +10,7 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.SAXException;
 
 import game.displayable.*;
-public class Rogue {
+public class rogue {
 
     public static void main(String[] args) {
 

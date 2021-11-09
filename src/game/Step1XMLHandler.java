@@ -1,13 +1,15 @@
 package game;
 
 
-import game.displayable.Structure.Passage;
-import game.displayable.Structure.Room;
+import game.action.Action;
+import game.action.creatureAction.CreatureAction;
 import game.displayable.Displayable;
 import game.displayable.Dungeon;
-import game.displayable.creatures.*;
-import game.action.*;
-import game.action.creatureAction.CreatureAction;
+import game.displayable.Structure.Passage;
+import game.displayable.Structure.Room;
+import game.displayable.creatures.Monster;
+import game.displayable.creatures.Player;
+import game.displayable.item.*;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -32,6 +34,8 @@ public class Step1XMLHandler extends DefaultHandler {
     private Player playerBeingParsed = null;
     private Action creatureActionBeingParsed = null;
     private Passage passageBeingParsed = null;
+    private Armor armorBeingParsed = null;
+    private Sword swordBeingParsed = null;
 
     public Dungeon getDungeons(){
         return dungeonBeingParsed;
@@ -93,37 +97,29 @@ public class Step1XMLHandler extends DefaultHandler {
             String actionMessage = attributes.getValue("actionMessage");
             creatureActionBeingParsed = new CreatureAction(name, type);
 
-        } /*else if (qName.equalsIgnoreCase("Passages"));
+        } else if (qName.equalsIgnoreCase("Passages"));
 
-        } else if (qName.equalsIgnoreCase("Passage")) {
+        else if (qName.equalsIgnoreCase("Passage")) {
+            disNum++;
             int room1 = Integer.parseInt(attributes.getValue("room1"));
             int room2 = Integer.parseInt(attributes.getValue("room2"));
             passageBeingParsed = new Passage(room1, room2);
-
         }
-            /*else if (qName.equalsIgnoreCase("posX")) {
-            bPosX = true;
-        } else if (qName.equalsIgnoreCase("posY")) {
-            bPosY = true;
-        } else if (qName.equalsIgnoreCase("width")) {
-            bWidth = true;
-        } else if (qName.equalsIgnoreCase("height")) {
-            bHeight = true;
-        } else if (qName.equalsIgnoreCase("type")) {
-            bType = true;
-        } else if (qName.equalsIgnoreCase("hp")) {
-            bHp = true;
-        } else if (qName.equalsIgnoreCase("maxhit")) {
-            bMaxhit = true;
-        } else if (qName.equalsIgnoreCase("visible")) {
-            bVisible = true;
-        } else if (qName.equalsIgnoreCase("hpMoves")) {
-            bHpMoves = true;
-        } else if (qName.equalsIgnoreCase("actionMessage")) {
-            bActionMessage = true;
-        } else {
-            System.out.println("Unknown qname: " + qName);
-        }*/
+        else if (qName.equalsIgnoreCase("Armor")) {
+            disNum++;
+            String name = attributes.getValue("name");
+            int room = Integer.parseInt(attributes.getValue("room"));
+            int serial = Integer.parseInt(attributes.getValue("serial"));
+            armorBeingParsed = new Armor(name, room, serial);
+        }
+        else if(qName.equalsIgnoreCase("Sword")) {
+            disNum++;
+            String name = attributes.getValue("name");
+            int room = Integer.parseInt(attributes.getValue("room"));
+            int serial = Integer.parseInt(attributes.getValue("serial"));
+            swordBeingParsed = new Sword(name, room, serial);
+        }
+
         data = new StringBuilder();
     }
 
@@ -176,7 +172,9 @@ public class Step1XMLHandler extends DefaultHandler {
             //CreatureAction.setActionMessage(data.toString());
             displayable[disNum].setActionMessage(data.toString());
             
-        }
+        } /*else if (qName.equalsIgnoreCase("ItemIntValue")) {
+            displayable[disNum].setItemIntValue(data.toString());
+        }*/
         
         else if (qName.equalsIgnoreCase("CreatureAction")) {
             creatureActionBeingParsed = null;
@@ -196,6 +194,15 @@ public class Step1XMLHandler extends DefaultHandler {
 
         } else if (qName.equalsIgnoreCase("Dungeon")) {
             //dungeonBeingParsed = null;
+            disNum--;
+        } else if(qName.equalsIgnoreCase("Passage")) {
+            passageBeingParsed = null;
+            disNum--;
+        } else if(qName.equalsIgnoreCase("Armor")) {
+            armorBeingParsed = null;
+            disNum--;
+        } else if(qName.equalsIgnoreCase("Sword")){
+            swordBeingParsed = null;
             disNum--;
         }
 
