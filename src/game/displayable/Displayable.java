@@ -25,6 +25,14 @@ public class Displayable {
         return type.charAt(0);
     }
 
+    public int getPosX(){
+        return posX;
+    }
+
+    public int getPosY(){
+        return posY;
+    }
+
     public void setInvisible(int invis){
         invisible = invis;
         System.out.println("invisible set");
@@ -84,5 +92,10 @@ public class Displayable {
     public void draw(){
         ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
         grid.addObjectToDisplay(this, posX, posY);
+    }
+
+    public void globalize(int x, int y){
+        posX += x;
+        posY += y;
     }
 }

@@ -10,4 +10,8 @@ public class Passage {
     public void setID(int room1, int room2){
 
     }
+
+    public char getChar(){
+        return '#';
+    }
 }

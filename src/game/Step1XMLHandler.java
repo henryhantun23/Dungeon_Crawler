@@ -97,13 +97,17 @@ public class Step1XMLHandler extends DefaultHandler {
             String actionMessage = attributes.getValue("actionMessage");
             creatureActionBeingParsed = new CreatureAction(name, type);
 
-        } else if (qName.equalsIgnoreCase("Passages"));
+        } else if (qName.equalsIgnoreCase("Passages")){
+
+        }
 
         else if (qName.equalsIgnoreCase("Passage")) {
             disNum++;
             int room1 = Integer.parseInt(attributes.getValue("room1"));
             int room2 = Integer.parseInt(attributes.getValue("room2"));
             passageBeingParsed = new Passage(room1, room2);
+            dungeonBeingParsed.addPassage(passageBeingParsed);
+
         }
         else if (qName.equalsIgnoreCase("Armor")) {
             disNum++;
@@ -111,6 +115,7 @@ public class Step1XMLHandler extends DefaultHandler {
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
             armorBeingParsed = new Armor(name, room, serial);
+            roomBeingParsed.addArmor(armorBeingParsed);
         }
         else if(qName.equalsIgnoreCase("Sword")) {
             disNum++;
@@ -118,6 +123,7 @@ public class Step1XMLHandler extends DefaultHandler {
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
             swordBeingParsed = new Sword(name, room, serial);
+            roomBeingParsed.addSword(swordBeingParsed);
         }
 
         data = new StringBuilder();
@@ -180,10 +186,12 @@ public class Step1XMLHandler extends DefaultHandler {
             creatureActionBeingParsed = null;
             disNum--;
         } else if (qName.equalsIgnoreCase("Player")) {
+            playerBeingParsed.globalize(roomBeingParsed.getPosX(), roomBeingParsed.getPosY());
             playerBeingParsed = null;
             disNum--;
 
         } else if (qName.equalsIgnoreCase("Monster")) {
+            monsterBeingParsed.globalize(roomBeingParsed.getPosX(), roomBeingParsed.getPosY());
             monsterBeingParsed = null;
             disNum--;
 
@@ -199,9 +207,11 @@ public class Step1XMLHandler extends DefaultHandler {
             passageBeingParsed = null;
             disNum--;
         } else if(qName.equalsIgnoreCase("Armor")) {
+            armorBeingParsed.globalize(roomBeingParsed.getPosX(), roomBeingParsed.getPosY());
             armorBeingParsed = null;
             disNum--;
         } else if(qName.equalsIgnoreCase("Sword")){
+            swordBeingParsed.globalize(roomBeingParsed.getPosX(), roomBeingParsed.getPosY());
             swordBeingParsed = null;
             disNum--;
         }

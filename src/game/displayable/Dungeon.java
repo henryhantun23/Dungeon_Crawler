@@ -18,6 +18,7 @@ public class Dungeon extends Displayable{
     
 
     private List<Room> rooms = new ArrayList<Room>();
+    private List<Passage> passages = new ArrayList<Passage>();
 
     public Dungeon(String _name, int _width, int _topHeight, int _gameHeight, int _bottomHeight){
         name = _name;
@@ -34,6 +35,10 @@ public class Dungeon extends Displayable{
         //rooms[roomCount++] = room;
         rooms.add(room);
     }
+
+    public void addPassage(Passage passage){
+        passages.add(passage);
+    }
     
 
     public void setDungeon(String name, int width, int topHeight, int gameHeight, int bottomHeight) {
@@ -42,9 +47,7 @@ public class Dungeon extends Displayable{
     public void addCreature(Creature creature){
 
     }
-    public void addPassage(Passage passage){
 
-    }
     public void addItem(Item item){
 
     }

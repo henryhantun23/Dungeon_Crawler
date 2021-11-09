@@ -3,6 +3,9 @@ package game.displayable.Structure;
 import game.displayable.creatures.Creature;
 import game.displayable.creatures.Monster;
 import game.displayable.creatures.Player;
+import game.displayable.item.Armor;
+import game.displayable.item.Sword;
+
 import java.util.*;
 
 public class Room extends Structure{
@@ -12,6 +15,8 @@ public class Room extends Structure{
         setId(_id);
     }
     private List<Monster> monsters = new ArrayList<Monster>(); // Arraylist of monsters + items
+    private List<Armor> armors = new ArrayList<Armor>();
+    private List<Sword> swords = new ArrayList<Sword>();
 
     private Player player;
 
@@ -19,8 +24,16 @@ public class Room extends Structure{
         System.out.println("add creature");
         monsters.add(monster);
     }
-    public Player addPlayer (Player player) {
-        return player;
+
+    public void addArmor(Armor armor){
+        armors.add(armor);
+    }
+    public void addSword(Sword sword){
+        swords.add(sword);
+    }
+
+    public void addPlayer (Player _player) {
+        player = _player;
     }
 
     public void setId(int room){
