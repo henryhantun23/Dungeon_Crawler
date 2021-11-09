@@ -1,9 +1,9 @@
-package Step1.displayable;
+package game.displayable;
 
-import Step1.displayable.Structure.Passage;
-import Step1.displayable.Structure.Room;
-import Step1.displayable.creatures.Creature;
-import Step1.displayable.item.Item;
+import game.displayable.Structure.Passage;
+import game.displayable.Structure.Room;
+import game.displayable.creatures.Creature;
+import game.displayable.item.Item;
 import java.util.*;
 
 public class Dungeon extends Displayable{

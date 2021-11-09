@@ -1,8 +1,8 @@
-package Step1.displayable.Structure;
+package game.displayable.Structure;
 
-import Step1.displayable.creatures.Creature;
-import Step1.displayable.creatures.Monster;
-import Step1.displayable.creatures.Player;
+import game.displayable.creatures.Creature;
+import game.displayable.creatures.Monster;
+import game.displayable.creatures.Player;
 import java.util.*;
 
 public class Room extends Structure{

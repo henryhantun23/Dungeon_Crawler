@@ -1,7 +1,6 @@
-package Step1.action.creatureAction;
+package game.action.creatureAction;
 
-import Step1.action.Action;
-import Step1.displayable.creatures.Creature;
+import game.action.Action;
 
 public class CreatureAction extends Action{
     private static String message;
@@ -19,7 +18,7 @@ public class CreatureAction extends Action{
         System.out.println(msg);
     }
     // public CreatureAction(Creature owner){
-    //     System.out.println("Creating endgame player action");
+    //     System.out.println("Creating endgame player game.action");
     //     setMessage("Player is killed!");
 
     

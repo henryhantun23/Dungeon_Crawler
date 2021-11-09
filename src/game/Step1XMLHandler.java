@@ -1,18 +1,16 @@
-package Step1;
+package game;
 
 
-import Step1.displayable.Structure.Passage;
-import Step1.displayable.Structure.Room;
-import Step1.displayable.Displayable;
-import Step1.displayable.Dungeon;
-import Step1.displayable.creatures.*;
-import Step1.action.*;
-import Step1.action.creatureAction.CreatureAction;
-import java.util.ArrayList;
+import game.displayable.Structure.Passage;
+import game.displayable.Structure.Room;
+import game.displayable.Displayable;
+import game.displayable.Dungeon;
+import game.displayable.creatures.*;
+import game.action.*;
+import game.action.creatureAction.CreatureAction;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-import Step1.Step1XMLHandler;
 
 public class Step1XMLHandler extends DefaultHandler {
 
@@ -175,7 +173,7 @@ public class Step1XMLHandler extends DefaultHandler {
             displayable[disNum].setVisible(Integer.parseInt(data.toString()));
 
         } else if (qName.equalsIgnoreCase("actionMessage")) {
-            //action = (CreatureAction) creatureActionBeingParsed;
+            //game.action = (CreatureAction) creatureActionBeingParsed;
             //CreatureAction.setActionMessage(data.toString());
             displayable[disNum].setActionMessage(data.toString());
             
@@ -195,7 +193,7 @@ public class Step1XMLHandler extends DefaultHandler {
         } else if (qName.equalsIgnoreCase("Room")) {
             roomBeingParsed = null;
             disNum--;
-            // decrement where you are in displayable stack
+            // decrement where you are in game.displayable stack
 
         } else if (qName.equalsIgnoreCase("Dungeon")) {
             dungeonBeingParsed = null;

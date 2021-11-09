@@ -1,4 +1,4 @@
-package Step1.displayable.Structure;
+package game.displayable.Structure;
 
 public class RoomWall extends Structure{
     

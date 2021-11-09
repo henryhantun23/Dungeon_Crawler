@@ -1,4 +1,4 @@
-package Step1.displayable.item;
+package game.displayable.item;
 
 public class Sword extends Item{
     public Sword(){

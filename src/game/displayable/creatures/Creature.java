@@ -1,7 +1,7 @@
-package Step1.displayable.creatures;
+package game.displayable.creatures;
 
-import Step1.action.creatureAction.CreatureAction;
-import Step1.displayable.Displayable;
+import game.action.creatureAction.CreatureAction;
+import game.displayable.Displayable;
 
 public class Creature extends Displayable{
     private CreatureAction actions;

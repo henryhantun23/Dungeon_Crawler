@@ -1,6 +1,6 @@
-package Step1.displayable.item;
+package game.displayable.item;
 
-import Step1.displayable.creatures.Creature;
+import game.displayable.creatures.Creature;
 
 public class Item {
     

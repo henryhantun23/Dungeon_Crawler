@@ -1,4 +1,4 @@
-package Step1;
+package game;
 
 
 
@@ -10,7 +10,7 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 
-import Step1.displayable.*;
+import game.displayable.*;
 public class Test {
 
     public static void main(String[] args) {

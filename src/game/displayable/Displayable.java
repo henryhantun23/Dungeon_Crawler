@@ -1,4 +1,4 @@
-package Step1.displayable;
+package game.displayable;
 
 
 public class Displayable {

@@ -1,4 +1,4 @@
-package Step1.action;
+package game.action;
 
 public class Action {
 

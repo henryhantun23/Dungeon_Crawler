@@ -1,4 +1,4 @@
-package Step1.displayable.creatures;
+package game.displayable.creatures;
 
 public class Monster extends Creature{
 
