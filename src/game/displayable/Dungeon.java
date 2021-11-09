@@ -48,6 +48,16 @@ public class Dungeon extends Displayable{
     public void addItem(Item item){
 
     }
+
+    public int getGameHeight(){
+        return gameHeight;
+    }
+
+    public int getWidth(){
+        return width;
+    }
+
+
     /*
     public String toString() {
         String str = "Dungeon : \n";
