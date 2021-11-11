@@ -107,6 +107,7 @@ public class Step1XMLHandler extends DefaultHandler {
             int room2 = Integer.parseInt(attributes.getValue("room2"));
             passageBeingParsed = new Passage(room1, room2);
             dungeonBeingParsed.addPassage(passageBeingParsed);
+            displayable[disNum] = passageBeingParsed;
 
         }
         else if (qName.equalsIgnoreCase("Armor")) {

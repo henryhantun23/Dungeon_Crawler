@@ -1,6 +1,6 @@
 package game.displayable.Structure;
 
-public class Passage {
+public class Passage extends Structure{
     private int room1;
     private int room2;
     public Passage(int _room1, int _room2){
