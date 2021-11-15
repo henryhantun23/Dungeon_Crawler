@@ -18,38 +18,43 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
 
     private List<InputObserver> inputObservers = null;
 
-    private static int height;
+    private static int topHeight;
+    private static int gameHeight;
+    private static int bottomHeight;
+
     private static int width;
     private static ObjectDisplayGrid instance = null;
 
     // csn add more parameters, call before getInstance
-    public static void setGridSize(int _width, int _height){
+    public static void setGridSize(int _width, int __topHeight, int _gameHeight, int _bottomHeight){
         if(instance != null){
             System.out.println("Setting grid size after object display grid was already created");
         }
         width = _width;
-        height = _height;
+        topHeight = __topHeight;
+        gameHeight = _gameHeight;
+        bottomHeight = _bottomHeight;
     }
 
     public static ObjectDisplayGrid getInstance(){
         if(instance == null){
-            instance = new ObjectDisplayGrid(width, height);
+            instance = new ObjectDisplayGrid();
         }
         return instance;
     }
 
-    private ObjectDisplayGrid(int _width, int _height) {
+    private ObjectDisplayGrid() {
         //width = _width;
         //height = _height;
 
-        terminal = new AsciiPanel(width, height);
+        terminal = new AsciiPanel(width, topHeight + gameHeight + bottomHeight);
 
-        objectGrid = new Displayable[width][height];
+        objectGrid = new Displayable[width][gameHeight];
 
         //initializeDisplay(); // drawing dots across screen
 
         super.add(terminal);
-        super.setSize(width * 9, height * 16);
+        super.setSize(width * 10, (topHeight + gameHeight + bottomHeight) * 17);
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // super.repaint();
         // terminal.repaint( );
@@ -114,9 +119,30 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         }
     }
 
+    public Displayable getObject(int x, int y){
+        Displayable obj = objectGrid[x][y];
+        return obj;
+    }
+
     private void writeToTerminal(int x, int y) {
         char ch = objectGrid[x][y].getChar();
-        terminal.write(ch, x, y); // can offset
+        terminal.write(ch, x, y + 2); // can offset
+        terminal.repaint();
+    }
+
+    public void writeToTop(String str, int y){
+        terminal.write(str, 0, y);
+        for(int i = str.length(); i < width; i++){
+            terminal.write(' ', i, y);
+        }
+        terminal.repaint();
+    }
+
+    public void writeToBottom(String str, int y){
+        terminal.write(str, 0, y + topHeight + gameHeight);
+        for(int i = str.length(); i < width; i++){
+            terminal.write(' ', i, y + topHeight + gameHeight);
+        }
         terminal.repaint();
     }
 }

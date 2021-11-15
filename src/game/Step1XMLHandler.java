@@ -87,7 +87,7 @@ public class Step1XMLHandler extends DefaultHandler {
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
             playerBeingParsed = new Player(name, room, serial);
-            roomBeingParsed.addPlayer(playerBeingParsed);
+            dungeonBeingParsed.addPlayer(playerBeingParsed);
             displayable[disNum] = playerBeingParsed;
             
 

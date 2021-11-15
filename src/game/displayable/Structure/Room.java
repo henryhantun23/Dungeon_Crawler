@@ -20,8 +20,6 @@ public class Room extends Structure{
     private List<Armor> armors = new ArrayList<Armor>();
     private List<Sword> swords = new ArrayList<Sword>();
 
-    private Player player;
-
     public void addMonster (Monster monster){
         System.out.println("add creature");
         monsters.add(monster);
@@ -32,10 +30,6 @@ public class Room extends Structure{
     }
     public void addSword(Sword sword){
         swords.add(sword);
-    }
-
-    public void addPlayer (Player _player) {
-        player = _player;
     }
 
     public void setId(int room){
@@ -70,9 +64,6 @@ public class Room extends Structure{
         }
         for(int k=0; k <swords.size(); k++){
             swords.get(k).draw();
-        }
-        if(player != null){
-            player.draw();
         }
     }
 

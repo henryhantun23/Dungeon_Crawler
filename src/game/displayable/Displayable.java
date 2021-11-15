@@ -99,7 +99,7 @@ public class Displayable {
         
     }
     public void setPosY(int y){
-        posY = y + 2;
+        posY = y;
 
         System.out.println("y pos set");
     }
@@ -124,6 +124,6 @@ public class Displayable {
 
     public void globalize(int x, int y){
         posX += x;
-        posY += (y - 2);
+        posY += (y);
     }
 }

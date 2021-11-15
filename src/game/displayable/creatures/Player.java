@@ -1,17 +1,16 @@
 package game.displayable.creatures;
 
+import game.displayable.item.*;
+import java.util.*;
+
 public class Player extends Creature {
     private String name;
-    private int posX;
-    private int posY;
-    private char type;
-    private int hp;
-    private int maxhit;
-    private int visible;
     private int room;
     private int serial;
+
+    private List<Item> pack = new ArrayList<Item>();
+
     public Player(String _name, int _room, int _serial) {
-        
         setName(_name);
         setRoom(_room);
         setSerial(_serial);

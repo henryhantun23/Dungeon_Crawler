@@ -3,6 +3,7 @@ package game.displayable;
 import game.displayable.Structure.Passage;
 import game.displayable.Structure.Room;
 import game.displayable.creatures.Creature;
+import game.displayable.creatures.*;
 import game.displayable.item.Item;
 import java.util.*;
 import game.ObjectDisplayGrid;
@@ -19,6 +20,7 @@ public class Dungeon extends Displayable{
 
     private List<Room> rooms = new ArrayList<Room>();
     private List<Passage> passages = new ArrayList<Passage>();
+    private Player player;
 
     public Dungeon(String _name, int _width, int _topHeight, int _gameHeight, int _bottomHeight){
         name = _name;
@@ -29,7 +31,10 @@ public class Dungeon extends Displayable{
         //System.out.println("Creating dungeon\n");
     }
 
-    
+    public void addPlayer (Player _player) {
+        player = _player;
+    }
+
     public void addRoom(Room room){ //use array lists
         //System.out.println("added room to dungeon.");
         //rooms[roomCount++] = room;
@@ -39,21 +44,17 @@ public class Dungeon extends Displayable{
     public void addPassage(Passage passage){
         passages.add(passage);
     }
-    
-
-    public void setDungeon(String name, int width, int topHeight, int gameHeight, int bottomHeight) {
-
-    }
-    public void addCreature(Creature creature){
-
-    }
-
-    public void addItem(Item item){
-
-    }
 
     public int getGameHeight(){
         return gameHeight;
+    }
+
+    public int getTopHeight(){
+        return topHeight;
+    }
+
+    public int getBottomHeight(){
+        return bottomHeight;
     }
 
     public int getWidth(){
@@ -69,6 +70,25 @@ public class Dungeon extends Displayable{
         for(int i=0; i < passages.size(); i++){
             passages.get(i).draw();
         }
+
+        if(player != null){
+            player.draw();
+            int hp = player.getHp();
+            String str = "HP: " + hp + " score: 0";
+            grid.writeToTop(str, 0);
+            grid.writeToBottom("Pack: ", 0);
+            grid.writeToBottom("Info: ", 2);
+
+        }
+
+
+        // String str = "Get out of me swamp";
+        // grid.writeToTop(str, 0);
+        // String str2 = "Hello";
+        // grid.writeToTop(str2, 0);
+        // String str3 = "Bottom";
+        // grid.writeToBottom(str3, 0);
+    
     }
 
     /*

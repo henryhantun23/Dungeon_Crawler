@@ -22,7 +22,7 @@ public class rogue {
            fileName = "src/xmlfiles/" + args[0];
            break;
         default:
-            fileName = "src/xmlfiles/dungeon.xml";
+            fileName = "src/xmlfiles/testDrawing.xml";
            //System.out.println("java Test <xmlfilename>");
         }
 
@@ -54,10 +54,7 @@ public class rogue {
             }
             */
 
-        int width = dungeon.getWidth();
-        int height = dungeon.getGameHeight();
-
-        ObjectDisplayGrid.setGridSize(width, height);
+        ObjectDisplayGrid.setGridSize(dungeon.getWidth(), dungeon.getTopHeight(), dungeon.getGameHeight(), dungeon.getBottomHeight());
         ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
         dungeon.draw();
 

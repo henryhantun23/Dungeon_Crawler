@@ -48,8 +48,14 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 if (ch == 'X') {
                     System.out.println("got an X, ending input checking");
                     return false;
-                } else {
-                    System.out.println("character " + ch + " entered on the keyboard");
+                } else if (ch == 'h'){
+                    System.out.println("ch: " + ch + " moving player left");
+                }else if (ch == 'l'){
+                    System.out.println("ch: " + ch + " moving player right");
+                }else if (ch == 'k'){
+                    System.out.println("ch: " + ch + " moving player up");
+                }else if (ch == 'j'){
+                    System.out.println("ch: " + ch + " moving player down");
                 }
             }
         }
