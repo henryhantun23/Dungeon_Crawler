@@ -27,6 +27,7 @@ public class Passage extends Structure{
         posx.add(x);
     }
     public void setPosY(int y){
+        y = y + 2;
         posy.add(y);
     }
 

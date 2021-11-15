@@ -11,6 +11,7 @@ import java.util.*;
 
 public class Room extends Structure{
     private int id;
+    private int posY;
     public Room(int _id){
         System.out.println("Creating room");
         setId(_id);

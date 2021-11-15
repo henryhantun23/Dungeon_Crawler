@@ -99,7 +99,8 @@ public class Displayable {
         
     }
     public void setPosY(int y){
-        posY = y;
+        posY = y + 2;
+
         System.out.println("y pos set");
     }
     public void setWidth(int x){
@@ -123,6 +124,6 @@ public class Displayable {
 
     public void globalize(int x, int y){
         posX += x;
-        posY += y;
+        posY += (y - 2);
     }
 }
