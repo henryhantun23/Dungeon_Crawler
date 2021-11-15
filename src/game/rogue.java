@@ -22,7 +22,7 @@ public class rogue {
            fileName = "src/xmlfiles/" + args[0];
            break;
         default:
-            fileName = "src/xmlfiles/dungeon.xml";
+            fileName = "src/xmlfiles/testDrawing.xml";
            //System.out.println("java Test <xmlfilename>");
         }
 

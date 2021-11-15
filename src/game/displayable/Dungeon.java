@@ -62,8 +62,12 @@ public class Dungeon extends Displayable{
 
     public void draw(){
         ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
+        
         for(int i = 0; i < rooms.size(); i++){
             rooms.get(i).draw(); // drawing all the rooms
+        }
+        for(int i=0; i < passages.size(); i++){
+            passages.get(i).draw();
         }
     }
 

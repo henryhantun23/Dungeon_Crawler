@@ -39,6 +39,26 @@ public class Displayable {
     public int getPosY(){
         return posY;
     }
+    public int getMaxHit(){
+        return maxhit;
+    }
+    public String getType(){
+        return type;
+    }
+    public int getHpMoves(){
+        return hpm;
+    }
+    public int getHp(){
+        return hp;
+    }
+    public boolean isVisible(){
+        if(visible == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
     public void setInvisible(int invis){
         invisible = invis;
