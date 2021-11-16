@@ -9,8 +9,13 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 
+import game.displayable.creatures.Player;
 import game.displayable.*;
-public class rogue {
+public class rogue implements Runnable{
+
+    public void run(){
+
+    }
 
     public static void main(String[] args) {
 
@@ -42,6 +47,7 @@ public class rogue {
             saxParser.parse(new File(fileName), handler);
 	    // This will change depending on what kind of XML we are parsing
             Dungeon dungeon = handler.getDungeons();
+            Player player = dungeon.getPlayer();
 	    // print out all of the students.  This will change depending on 
 	    // what kind of XML we are parsing
             //for (Student student : students) {
@@ -57,6 +63,20 @@ public class rogue {
         ObjectDisplayGrid.setGridSize(dungeon.getWidth(), dungeon.getTopHeight(), dungeon.getGameHeight(), dungeon.getBottomHeight());
         ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
         dungeon.draw();
+
+        // make thread
+        // start
+        // join
+
+        Thread myThread = new Thread(new KeyStrokePrinter(grid, player));
+        myThread.start();
+        try {
+            myThread.join();
+            dungeon.draw();
+        }
+        catch (InterruptedException e){
+
+        }
 
         // these lines should be copied exactly
         } catch (ParserConfigurationException | SAXException | IOException e) {

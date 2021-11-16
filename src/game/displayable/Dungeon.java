@@ -33,6 +33,11 @@ public class Dungeon extends Displayable{
 
     public void addPlayer (Player _player) {
         player = _player;
+        player.setDungeon(this);
+    }
+
+    public Player getPlayer(){
+        return player;
     }
 
     public void addRoom(Room room){ //use array lists

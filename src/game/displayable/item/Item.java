@@ -10,4 +10,7 @@ public class Item extends Displayable{
     public void setOwner(Creature owner){
 
     }
+    public Boolean canTraverse(){
+        return false;
+    }
 }

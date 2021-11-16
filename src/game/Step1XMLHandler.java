@@ -40,6 +40,10 @@ public class Step1XMLHandler extends DefaultHandler {
     public Dungeon getDungeons(){
         return dungeonBeingParsed;
     }
+
+    public Player getPlayer(){
+        return playerBeingParsed;
+    }
     public Step1XMLHandler() {
 
     }

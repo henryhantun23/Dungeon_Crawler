@@ -126,4 +126,8 @@ public class Displayable {
         posX += x;
         posY += (y);
     }
+
+    public Boolean canTraverse(){
+        return false;
+    }
 }

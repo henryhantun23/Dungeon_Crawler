@@ -2,6 +2,8 @@ package game;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import game.displayable.creatures.*;
+import game.ObjectDisplayGrid;
 
 public class KeyStrokePrinter implements InputObserver, Runnable {
 
@@ -9,10 +11,12 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
     private static String CLASSID = "KeyStrokePrinter";
     private static Queue<Character> inputQueue = null;
     private ObjectDisplayGrid displayGrid;
+    private Player player;
 
-    public KeyStrokePrinter(ObjectDisplayGrid grid) {
+    public KeyStrokePrinter(ObjectDisplayGrid grid, Player _player) {
         inputQueue = new ConcurrentLinkedQueue<>();
         displayGrid = grid;
+        player = _player;
     }
 
     @Override
@@ -44,18 +48,18 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 ch = inputQueue.poll();
                 if (DEBUG > 1) {
                     System.out.println(CLASSID + ".processInput peek is " + ch);
-                }
-                if (ch == 'X') {
-                    System.out.println("got an X, ending input checking");
-                    return false;
-                } else if (ch == 'h'){
-                    System.out.println("ch: " + ch + " moving player left");
+                }if (ch == 'h'){
+                    System.out.println("moving player left");
+                    player.move(-1, 0, displayGrid);
                 }else if (ch == 'l'){
-                    System.out.println("ch: " + ch + " moving player right");
+                    System.out.println("moving player right");
+                    player.move(1, 0, displayGrid);
                 }else if (ch == 'k'){
-                    System.out.println("ch: " + ch + " moving player up");
+                    System.out.println("moving player up");
+                    player.move(0, 1, displayGrid);
                 }else if (ch == 'j'){
-                    System.out.println("ch: " + ch + " moving player down");
+                    System.out.println("moving player down");
+                    player.move(0, -1, displayGrid);
                 }
             }
         }

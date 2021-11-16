@@ -15,6 +15,9 @@ public class Creature extends Displayable{
         actions = da;
 
     }
+    public Boolean canTraverse(){
+        return false;
+    }
     /*public void setHitAction(ha){
 
     }*/

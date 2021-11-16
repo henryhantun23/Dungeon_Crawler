@@ -11,6 +11,10 @@ public class Passage extends Structure{
 
 
 
+    public Boolean canTraverse(){
+        return true;
+    }
+    
     public Passage(int _room1, int _room2){
         setID(_room1, room2);
     }
