@@ -18,4 +18,7 @@ public class Armor extends Item{
     public char getChar(){
         return ']';
     }
+    public String getName(){
+        return this.name;
+    }
 }

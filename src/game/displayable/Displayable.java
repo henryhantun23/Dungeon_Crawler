@@ -1,6 +1,8 @@
 package game.displayable;
 
 import game.ObjectDisplayGrid;
+import java.util.Random;
+import game.displayable.creatures.*;
 
 public class Displayable {
     private int posX;
@@ -15,6 +17,7 @@ public class Displayable {
     private int visible;
     private int invisible;
     private String message;
+    Random rand = new Random();
 
 
     public Displayable(){ //what does this function do?
@@ -58,6 +61,10 @@ public class Displayable {
         else{
             return false;
         }
+    }
+
+    public boolean isMonster(){
+        return false;
     }
 
     public void setInvisible(int invis){
@@ -121,6 +128,9 @@ public class Displayable {
         ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
         grid.addObjectToDisplay(this, posX, posY);
     }
+    public String getName(){
+        return this.getName();
+    }
 
     public void globalize(int x, int y){
         posX += x;
@@ -128,6 +138,19 @@ public class Displayable {
     }
 
     public Boolean canTraverse(){
+        return false;
+    }
+
+    public void attack(Displayable attacker, Displayable attackee, boolean writeSecond){
+        ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
+        int hpHit = rand.nextInt(attacker.getMaxHit() + 1);
+        int hp = attackee.getHp() - hpHit;
+        attackee.setHp(hp);
+        String str = attacker.getName() + " dealt " + hpHit + " damage to " + attackee.getName();
+        grid.writeInfo(str, writeSecond);
+    }
+
+    public boolean isPlayer(){
         return false;
     }
 }

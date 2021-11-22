@@ -63,6 +63,7 @@ public class rogue implements Runnable{
         ObjectDisplayGrid.setGridSize(dungeon.getWidth(), dungeon.getTopHeight(), dungeon.getGameHeight(), dungeon.getBottomHeight());
         ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
         dungeon.draw();
+        dungeon.drawInitialInfo();
 
         // make thread
         // start

@@ -36,6 +36,7 @@ public class Step1XMLHandler extends DefaultHandler {
     private Passage passageBeingParsed = null;
     private Armor armorBeingParsed = null;
     private Sword swordBeingParsed = null;
+    private Scroll scrollBeingParsed = null;
 
     public Dungeon getDungeons(){
         return dungeonBeingParsed;
@@ -114,13 +115,18 @@ public class Step1XMLHandler extends DefaultHandler {
             displayable[disNum] = passageBeingParsed;
 
         }
-        else if (qName.equalsIgnoreCase("Armor")) {
+        else if (qName.equalsIgnoreCase("Armor")) { // TODO check if it's in a room or in the player's pack
             disNum++;
             String name = attributes.getValue("name");
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
             armorBeingParsed = new Armor(name, room, serial);
-            roomBeingParsed.addArmor(armorBeingParsed);
+            if(playerBeingParsed != null){
+                playerBeingParsed.addItem(armorBeingParsed);
+            }
+            else{
+                roomBeingParsed.addItem(armorBeingParsed);
+            }
             displayable[disNum] = armorBeingParsed;
         }
         else if(qName.equalsIgnoreCase("Sword")) {
@@ -129,8 +135,28 @@ public class Step1XMLHandler extends DefaultHandler {
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
             swordBeingParsed = new Sword(name, room, serial);
-            roomBeingParsed.addSword(swordBeingParsed);
+            if(playerBeingParsed != null){
+                playerBeingParsed.addItem(swordBeingParsed);
+            }
+            else{
+                roomBeingParsed.addItem(swordBeingParsed);
+            }
             displayable[disNum] = swordBeingParsed;
+
+        }
+        else if(qName.equalsIgnoreCase("Scroll")) {
+            disNum++;
+            String name = attributes.getValue("name");
+            int room = Integer.parseInt(attributes.getValue("room"));
+            int serial = Integer.parseInt(attributes.getValue("serial"));
+            scrollBeingParsed = new Scroll(name, room, serial);
+            if(playerBeingParsed != null){
+                playerBeingParsed.addItem(scrollBeingParsed);
+            }
+            else{
+                roomBeingParsed.addItem(scrollBeingParsed); 
+            }
+            displayable[disNum] = scrollBeingParsed;
 
         }
 
@@ -223,6 +249,10 @@ public class Step1XMLHandler extends DefaultHandler {
         } else if(qName.equalsIgnoreCase("Sword")){
             swordBeingParsed.globalize(roomBeingParsed.getPosX(), roomBeingParsed.getPosY());
             swordBeingParsed = null;
+            disNum--;
+        } else if(qName.equalsIgnoreCase("Scroll")){
+            scrollBeingParsed.globalize(roomBeingParsed.getPosX(), roomBeingParsed.getPosY());
+            scrollBeingParsed = null;
             disNum--;
         }
 

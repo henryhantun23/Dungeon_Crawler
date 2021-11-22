@@ -127,6 +127,10 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
     private void writeToTerminal(int x, int y) {
         char ch = objectGrid[x][y].getChar();
         terminal.write(ch, x, y + topHeight); // can offset
+        //terminal.repaint();
+    }
+
+    public void repaintGrid(){
         terminal.repaint();
     }
 
@@ -142,6 +146,16 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         terminal.write(str, 0, y + topHeight + gameHeight);
         for(int i = str.length(); i < width; i++){
             terminal.write(' ', i, y + topHeight + gameHeight);
+        }
+        terminal.repaint();
+    }
+
+    public void writeInfo(String str, boolean writeSecond){
+        if(writeSecond == true){
+            writeToBottom("      " + str, 3);
+        }
+        else{
+            writeToBottom("Info: " + str, 2);
         }
         terminal.repaint();
     }

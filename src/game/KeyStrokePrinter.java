@@ -4,6 +4,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import game.displayable.creatures.*;
 import game.ObjectDisplayGrid;
+import game.displayable.*;
 
 public class KeyStrokePrinter implements InputObserver, Runnable {
 
@@ -12,6 +13,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
     private static Queue<Character> inputQueue = null;
     private ObjectDisplayGrid displayGrid;
     private Player player;
+    private boolean dropItem = false;
 
     public KeyStrokePrinter(ObjectDisplayGrid grid, Player _player) {
         inputQueue = new ConcurrentLinkedQueue<>();
@@ -42,24 +44,47 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
 
         boolean processing = true;
         while (processing) {
+            
+            if(player.getIsGameOver() == true){
+                return false;
+            }
             if (inputQueue.peek() == null) {
                 processing = false;
             } else {
                 ch = inputQueue.poll();
                 if (DEBUG > 1) {
                     System.out.println(CLASSID + ".processInput peek is " + ch);
-                }if (ch == 'h'){
+                } if(dropItem){
+                    if(Character.isDigit(ch) && ch != '0' && (ch - '0') <= player.pack.size()){
+                        int index = ch - '0' - 1;
+                        player.dropItem(index);
+                    }else{
+                        player.getDungeon().drawInfo("Need to give a digit 1-9 that is an index of the pack");
+                    }
+                    dropItem = false;
+                }
+                else if (ch == 'h'){
                     System.out.println("moving player left");
                     player.move(-1, 0, displayGrid);
                 }else if (ch == 'l'){
                     System.out.println("moving player right");
                     player.move(1, 0, displayGrid);
                 }else if (ch == 'k'){
-                    System.out.println("moving player up");
+                    System.out.println("moving player down");
                     player.move(0, 1, displayGrid);
                 }else if (ch == 'j'){
-                    System.out.println("moving player down");
+                    System.out.println("moving player up");
                     player.move(0, -1, displayGrid);
+                }else if (ch == 'p'){
+                    System.out.println("picking up item");
+                    player.pickUpItem();
+
+                }else if (ch == 'i'){
+                    System.out.println("displaying pack and info");
+                    player.getDungeon().drawPack();
+                }else if (ch == 'd'){
+                    System.out.println("dropping item");
+                    dropItem = true;
                 }
             }
         }

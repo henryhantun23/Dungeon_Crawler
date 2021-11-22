@@ -4,13 +4,14 @@ import game.displayable.Displayable;
 import game.displayable.creatures.Creature;
 
 public class Item extends Displayable{
-    public Item(){
-
-    }
+    
     public void setOwner(Creature owner){
 
     }
     public Boolean canTraverse(){
-        return false;
+        return true;
+    }
+    public String getName(){
+        return this.getName();
     }
 }

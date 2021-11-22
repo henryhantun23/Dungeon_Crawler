@@ -18,5 +18,8 @@ public class Sword extends Item{
     public char getChar(){
         return '|';
     }
+    public String getName(){
+        return this.name;
+    }
 
 }

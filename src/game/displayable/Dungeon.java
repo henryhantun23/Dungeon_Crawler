@@ -31,6 +31,26 @@ public class Dungeon extends Displayable{
         //System.out.println("Creating dungeon\n");
     }
 
+    public Item getItem(int x, int y){
+        for(Room room : rooms){
+            Item roomItem = room.getItem(x, y);
+            if(roomItem != null){
+                return roomItem;
+            }
+        }
+        return null;
+    }
+
+    public void removeItem(Item item){
+        for(Room room : rooms){
+            room.removeItem(item);
+        }
+    }
+
+    public void addItem(Item item){
+        rooms.get(0).addItem(item);
+    }
+
     public void addPlayer (Player _player) {
         player = _player;
         player.setDungeon(this);
@@ -79,12 +99,9 @@ public class Dungeon extends Displayable{
         if(player != null){
             player.draw();
             int hp = player.getHp();
-            String str = "HP: " + hp + " score: 0";
-            grid.writeToTop(str, 0);
-            grid.writeToBottom("Pack: ", 0);
-            grid.writeToBottom("Info: ", 2);
-
+            player.drawHpString(hp);
         }
+        grid.repaintGrid();
 
 
         // String str = "Get out of me swamp";
@@ -95,6 +112,35 @@ public class Dungeon extends Displayable{
         // grid.writeToBottom(str3, 0);
     
     }
+    public void drawPack(){
+        ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
+        String pack = player.printPack();
+        grid.writeToBottom("Pack: " + pack, 0);
+        grid.repaintGrid();
+    }
+
+    public void emptyInfo(){
+        ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
+        grid.writeToBottom("Info:", 2);
+    }
+
+    public void hidePack(){
+        ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
+        grid.writeToBottom("Pack:", 0);
+        grid.repaintGrid();
+    }
+
+    public void drawInitialInfo(){
+        hidePack();
+        emptyInfo();
+    }
+
+    public void drawInfo(String str){
+        ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
+        grid.writeToBottom("Info: " + str, 2);
+        grid.repaintGrid();
+    }
+
 
     /*
     public String toString() {

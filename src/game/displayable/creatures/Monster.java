@@ -24,6 +24,12 @@ public class Monster extends Creature{
         id = (_room * 10) + _serial;
         System.out.println("id set");
     }
+    public boolean isMonster(){
+        return true;
+    }
+    public String getName(){
+        return name;
+    }
 
 /*
     public String toString(){
