@@ -76,23 +76,25 @@ public class Player extends Creature {
         int x = this.getPosX();
         int y = this.getPosY();
         Displayable thing = grid.getObject(x + deltaX, y + deltaY);
-        if(thing.canTraverse()){
-            this.setPosX(x + deltaX);
-            this.setPosY(y + deltaY);
-            // num--;
-            // if(num == 0){
-            //     num = this.getHpMoves();
-            //     this.setHp(this.getHp() + 1);
-            // }
-            dungeon.draw();
-        }
-        else if(thing.isMonster()){
-            this.attack(this, thing, false);
-            thing.attack(thing, this, true);
-            if(this.getHp() <= 0){ //TODO move to actions
-                isGameOver = true;
+        if(thing != null){
+            if(thing.canTraverse()){
+                this.setPosX(x + deltaX);
+                this.setPosY(y + deltaY);
+                // num--;
+                // if(num == 0){
+                //     num = this.getHpMoves();
+                //     this.setHp(this.getHp() + 1);
+                // }
+                dungeon.draw();
             }
-            this.drawHpString(this.getHp());
+            else if(thing.isMonster()){
+                this.attack(this, thing, false);
+                thing.attack(thing, this, true);
+                if(this.getHp() <= 0){ //TODO move to actions
+                    isGameOver = true;
+                }
+                this.drawHpString(this.getHp());
+            }
         }
     }
 
