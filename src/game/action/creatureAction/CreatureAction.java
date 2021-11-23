@@ -1,25 +1,26 @@
 package game.action.creatureAction;
 
 import game.action.Action;
+import game.displayable.creatures.*;
 
-public class CreatureAction extends Action{
-    private static String message;
+public abstract class CreatureAction extends Action{
+    private String message;
     private String action_name;
-    private String action_type;
+    private Creature owner;
 
 
-    public CreatureAction(String _action_name, String _action_type){
+    public CreatureAction(String _action_name, Creature _owner){
         action_name = _action_name;
-        action_type = _action_type;
+        owner = _owner;
     }
 
-    public static void setActionMessage(String msg){
+    public void setActionMessage(String msg){
         message = msg;
         System.out.println(msg);
     }
     // public CreatureAction(Creature owner){
     //     System.out.println("Creating endgame player game.action");
     //     setMessage("Player is killed!");
-
+    public abstract void performAction();
     
 }

@@ -10,6 +10,8 @@ import game.displayable.Structure.Room;
 import game.displayable.creatures.Monster;
 import game.displayable.creatures.Player;
 import game.displayable.item.*;
+import game.displayable.creatures.*;
+import game.action.creatureAction.*;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -32,7 +34,7 @@ public class Step1XMLHandler extends DefaultHandler {
     private Room roomBeingParsed = null;
     private Monster monsterBeingParsed = null;
     private Player playerBeingParsed = null;
-    private Action creatureActionBeingParsed = null;
+    private CreatureAction creatureActionBeingParsed = null;
     private Passage passageBeingParsed = null;
     private Armor armorBeingParsed = null;
     private Sword swordBeingParsed = null;
@@ -100,7 +102,38 @@ public class Step1XMLHandler extends DefaultHandler {
             String name = attributes.getValue("name");
             String type = attributes.getValue("type");
             String actionMessage = attributes.getValue("actionMessage");
-            creatureActionBeingParsed = new CreatureAction(name, type);
+            Creature creature = null;
+            if(playerBeingParsed != null){
+                creature = playerBeingParsed;
+            }
+            if(monsterBeingParsed != null){
+                creature = monsterBeingParsed;
+            }
+            creatureActionBeingParsed = null;
+            switch(name){
+                case "ChangedDisplayType": creatureActionBeingParsed = new ChangedDisplayType(name, creature, actionMessage);
+                break;
+                case "DropPack": creatureActionBeingParsed = new DropPack(name, creature, actionMessage);
+                break;
+                case "EndGame": creatureActionBeingParsed = new EndGame(name, creature, actionMessage);
+                break;
+                case "Remove": creatureActionBeingParsed = new Remove(name, creature, actionMessage); 
+                break;
+                case "Teleport": creatureActionBeingParsed = new Teleport(name, creature, actionMessage);
+                break;
+                case "UpdateDisplay": creatureActionBeingParsed = new UpdateDisplay(name, creature, actionMessage);
+                break;
+                case "YouWin": creatureActionBeingParsed = new YouWin(name, creature, actionMessage);
+                break;
+
+                default: System.out.println("Unknown action class " + name);
+            }
+            
+            if(type.equals("death")){
+                creature.addDeathAction(creatureActionBeingParsed);
+            } else {
+                creature.addHitAction(creatureActionBeingParsed);
+            }
 
         } else if (qName.equalsIgnoreCase("Passages")){
 

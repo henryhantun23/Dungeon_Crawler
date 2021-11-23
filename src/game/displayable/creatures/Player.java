@@ -11,6 +11,7 @@ public class Player extends Creature {
     private int serial;
     private Dungeon dungeon;
     boolean isGameOver = false;
+    private int hpMovesTracker;
 
     public List<Item> pack = new ArrayList<Item>();
 
@@ -69,6 +70,11 @@ public class Player extends Creature {
     public boolean getIsGameOver(){
         return isGameOver;
     }
+    public void setHpMove(int _hpMoves){
+        super.setHpMove(_hpMoves);
+        hpMovesTracker = _hpMoves;
+        
+    }
 
     // move(deltaX, deltaY)
     public void move(int deltaX, int deltaY, ObjectDisplayGrid grid){
@@ -80,11 +86,12 @@ public class Player extends Creature {
             if(thing.canTraverse()){
                 this.setPosX(x + deltaX);
                 this.setPosY(y + deltaY);
-                // num--;
-                // if(num == 0){
-                //     num = this.getHpMoves();
-                //     this.setHp(this.getHp() + 1);
-                // }
+                hpMovesTracker--;
+                if(hpMovesTracker == 0){
+                    hpMovesTracker = this.getHpMoves();
+                    this.setHp(this.getHp() + 1);
+                    grid.writeInfo("Hp increased by 1", false);
+                }
                 dungeon.draw();
             }
             else if(thing.isMonster()){

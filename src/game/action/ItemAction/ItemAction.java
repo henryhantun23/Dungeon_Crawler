@@ -1,10 +1,12 @@
 package game.action.ItemAction;
 
 import game.action.Action;
-import game.displayable.item.Item;
+import game.displayable.creatures.*;
 
 public class ItemAction extends Action{
-    public ItemAction(Item owner){
+    Creature owner;
 
+    public ItemAction(Creature _owner){
+        owner = _owner;
     }
 }
