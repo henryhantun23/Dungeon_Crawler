@@ -3,11 +3,9 @@ package game.action.creatureAction;
 import game.displayable.creatures.*;
 
 public class UpdateDisplay extends CreatureAction{
-    String actionMessage;
 
-    public UpdateDisplay(String _name, Creature _owner, String am){
+    public UpdateDisplay(String _name, Creature _owner){
         super(_name, _owner);
-        actionMessage = am;
     }
 
     public void performAction(){

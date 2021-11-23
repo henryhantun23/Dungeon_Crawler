@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Rogue",
+            "request": "launch",
+            "mainClass": "game.Rogue",
+            "projectName": "39595_project_e534983"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"

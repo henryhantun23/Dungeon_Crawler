@@ -6,11 +6,9 @@ import game.ObjectDisplayGrid;
 
 
 public class DropPack extends CreatureAction{
-    String actionMessage;
 
-    public DropPack(String _name, Creature _owner, String am){
+    public DropPack(String _name, Creature _owner){
         super(_name, _owner);
-        actionMessage = am;
     }
 
     public void performAction(){
@@ -19,7 +17,7 @@ public class DropPack extends CreatureAction{
         Player p = (Player) owner;
         if(p.getPackSize() > 0){
             p.dropItem(0);
-            grid.writeInfo(actionMessage, false);
+            grid.writeInfo(message, false);
 
         }
         else{

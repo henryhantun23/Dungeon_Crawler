@@ -99,6 +99,7 @@ public class Step1XMLHandler extends DefaultHandler {
             
 
         } else if (qName.equalsIgnoreCase("CreatureAction")) {
+           
             String name = attributes.getValue("name");
             String type = attributes.getValue("type");
             String actionMessage = attributes.getValue("actionMessage");
@@ -111,23 +112,25 @@ public class Step1XMLHandler extends DefaultHandler {
             }
             creatureActionBeingParsed = null;
             switch(name){
-                case "ChangedDisplayType": creatureActionBeingParsed = new ChangedDisplayType(name, creature, actionMessage);
+                case "ChangedDisplayType": creatureActionBeingParsed = new ChangedDisplayType(name, creature);
                 break;
-                case "DropPack": creatureActionBeingParsed = new DropPack(name, creature, actionMessage);
+                case "DropPack": creatureActionBeingParsed = new DropPack(name, creature);
                 break;
-                case "EndGame": creatureActionBeingParsed = new EndGame(name, creature, actionMessage);
+                case "EndGame": creatureActionBeingParsed = new EndGame(name, creature);
                 break;
-                case "Remove": creatureActionBeingParsed = new Remove(name, creature, actionMessage); 
+                case "Remove": creatureActionBeingParsed = new Remove(name, creature); 
                 break;
-                case "Teleport": creatureActionBeingParsed = new Teleport(name, creature, actionMessage);
+                case "Teleport": creatureActionBeingParsed = new Teleport(name, creature);
                 break;
-                case "UpdateDisplay": creatureActionBeingParsed = new UpdateDisplay(name, creature, actionMessage);
+                case "UpdateDisplay": creatureActionBeingParsed = new UpdateDisplay(name, creature);
                 break;
-                case "YouWin": creatureActionBeingParsed = new YouWin(name, creature, actionMessage);
+                case "YouWin": creatureActionBeingParsed = new YouWin(name, creature);
                 break;
 
                 default: System.out.println("Unknown action class " + name);
             }
+           
+
             
             if(type.equals("death")){
                 creature.addDeathAction(creatureActionBeingParsed);
@@ -247,7 +250,7 @@ public class Step1XMLHandler extends DefaultHandler {
         } else if (qName.equalsIgnoreCase("actionMessage")) {
             //game.action = (CreatureAction) creatureActionBeingParsed;
             //CreatureAction.setActionMessage(data.toString());
-            displayable[disNum].setActionMessage(data.toString());
+            creatureActionBeingParsed.setActionMessage(data.toString());
             
         } /*else if (qName.equalsIgnoreCase("ItemIntValue")) {
             displayable[disNum].setItemIntValue(data.toString());

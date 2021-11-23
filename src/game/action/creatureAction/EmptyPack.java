@@ -7,11 +7,9 @@ import game.ObjectDisplayGrid;
 
 
 public class EmptyPack extends CreatureAction{
-    String actionMessage;
 
-    public EmptyPack(String _name, Creature _owner, String am){
+    public EmptyPack(String _name, Creature _owner){
         super(_name, _owner);
-        actionMessage = am;
     }
 
     public void performAction(){
@@ -22,7 +20,7 @@ public class EmptyPack extends CreatureAction{
             for(int i = 0; i < p.getPackSize(); i++){
                 p.dropItem(i);
             }
-            grid.writeInfo(actionMessage, false);
+            grid.writeInfo(message, false);
 
         }
         else{

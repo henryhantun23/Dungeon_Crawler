@@ -5,19 +5,16 @@ import game.ObjectDisplayGrid;
 
 
 public class YouWin extends CreatureAction{
-    String actionMessage;
 
-
-    public YouWin(String _name, Creature _owner, String am){
+    public YouWin(String _name, Creature _owner){
         super(_name, _owner);
-        actionMessage = am;
     }
 
     public void performAction(){
         
-        System.out.println("Performing YouWin Action");
+        System.out.println("Performing YouWin Action " + message);
         ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
-        grid.writeInfo(actionMessage, false);
+        grid.writeInfo(message, false);
 
     }
 
