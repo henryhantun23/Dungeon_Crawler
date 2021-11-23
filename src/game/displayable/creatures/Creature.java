@@ -17,14 +17,25 @@ public class Creature extends Displayable{
 
     public void addDeathAction(CreatureAction da){
         deathActions.add(da);
-
     }
-
     public void addHitAction(CreatureAction ha){
         hitActions.add(ha);
     }
     public Boolean canTraverse(){
         return false;
+    }
+    public CreatureAction getDeathAction(int i){
+        return deathActions.get(i);
+    }
+    public CreatureAction getHitActions(int i){
+        return hitActions.get(i);
+    }
+    public int getDeathActionSize(){
+        return deathActions.size();
+    }
+
+    public int getHitActionSize(){
+        return hitActions.size();
     }
     /*public void setHitAction(ha){
 

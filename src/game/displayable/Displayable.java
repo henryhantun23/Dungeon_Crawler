@@ -141,11 +141,14 @@ public class Displayable {
         return false;
     }
 
-    public void attack(Displayable attacker, Displayable attackee, boolean writeSecond){
+    public void attack(Creature attacker, Creature attackee, boolean writeSecond){
         ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
         int hpHit = rand.nextInt(attacker.getMaxHit() + 1);
         int hp = attackee.getHp() - hpHit;
         attackee.setHp(hp);
+        for(int i = 0; i < attackee.getHitActionSize(); i++){
+            attackee.getHitActions(i).performAction();
+        }
         String str = attacker.getName() + " dealt " + hpHit + " damage to " + attackee.getName();
         grid.writeInfo(str, writeSecond);
     }

@@ -40,6 +40,10 @@ public class Player extends Creature {
        }
     }
 
+    public int getPackSize(){
+        return pack.size();
+    }
+
     public void dropItem(int index){
         Item item = pack.get(index);
         pack.remove(item);
@@ -70,6 +74,9 @@ public class Player extends Creature {
     public boolean getIsGameOver(){
         return isGameOver;
     }
+    public void setIsGameOver(boolean b){
+        isGameOver = b;
+    }
     public void setHpMove(int _hpMoves){
         super.setHpMove(_hpMoves);
         hpMovesTracker = _hpMoves;
@@ -95,10 +102,19 @@ public class Player extends Creature {
                 dungeon.draw();
             }
             else if(thing.isMonster()){
-                this.attack(this, thing, false);
-                thing.attack(thing, this, true);
+                this.attack(this, (Creature) thing, false);
+                thing.attack((Creature) thing, this, true);
                 if(this.getHp() <= 0){ //TODO move to actions
+                    for(int i = 0; i < this.getDeathActionSize(); i++){
+                        this.getDeathAction(i).performAction();
+                    }
                     isGameOver = true;
+                }
+                if(thing.getHp() <= 0){
+                    Creature c = (Creature) thing;
+                    for(int i = 0; i < c.getDeathActionSize(); i++){
+                        c.getDeathAction(i).performAction();
+                    }
                 }
                 this.drawHpString(this.getHp());
             }

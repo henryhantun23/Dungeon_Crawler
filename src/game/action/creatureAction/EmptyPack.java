@@ -1,14 +1,15 @@
 package game.action.creatureAction;
 
 import game.displayable.creatures.*;
+import game.displayable.item.Item;
 import game.displayable.creatures.*;
 import game.ObjectDisplayGrid;
 
 
-public class DropPack extends CreatureAction{
+public class EmptyPack extends CreatureAction{
     String actionMessage;
 
-    public DropPack(String _name, Creature _owner, String am){
+    public EmptyPack(String _name, Creature _owner, String am){
         super(_name, _owner);
         actionMessage = am;
     }
@@ -18,7 +19,9 @@ public class DropPack extends CreatureAction{
         ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
         Player p = (Player) owner;
         if(p.getPackSize() > 0){
-            p.dropItem(0);
+            for(int i = 0; i < p.getPackSize(); i++){
+                p.dropItem(i);
+            }
             grid.writeInfo(actionMessage, false);
 
         }
@@ -27,5 +30,4 @@ public class DropPack extends CreatureAction{
         }
         
     }
-    
 }
