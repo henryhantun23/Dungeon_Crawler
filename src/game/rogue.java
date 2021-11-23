@@ -11,7 +11,7 @@ import org.xml.sax.SAXException;
 
 import game.displayable.creatures.Player;
 import game.displayable.*;
-public class rogue implements Runnable{
+public class Rogue implements Runnable{
 
     public void run(){
 
@@ -24,7 +24,7 @@ public class rogue implements Runnable{
         String fileName = null;
         switch (args.length) {
         case 1:
-           fileName = "src/xmlfiles/" + args[0];
+           fileName = "xmlfiles/" + args[0];
            break;
         default:
             fileName = "src/xmlfiles/testDrawing.xml";
