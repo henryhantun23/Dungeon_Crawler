@@ -202,7 +202,10 @@ public class Step1XMLHandler extends DefaultHandler {
             //monster.setMaxHit();
             displayable[disNum].setMaxHit(Integer.parseInt(data.toString()));
 
-        } else if (qName.equalsIgnoreCase("visible")) {
+        } else if (qName.equalsIgnoreCase("hpMoves")) {
+            displayable[disNum].setHpMove(Integer.parseInt(data.toString()));
+        }
+        else if (qName.equalsIgnoreCase("visible")) {
             //player = (Player) playerBeingParsed;
             //player.setVisible();
             System.out.println("disNum = " + disNum);

@@ -11,6 +11,7 @@ import org.xml.sax.SAXException;
 
 import game.displayable.creatures.Player;
 import game.displayable.*;
+
 public class Rogue implements Runnable{
 
     public void run(){

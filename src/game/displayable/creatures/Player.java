@@ -72,12 +72,18 @@ public class Player extends Creature {
 
     // move(deltaX, deltaY)
     public void move(int deltaX, int deltaY, ObjectDisplayGrid grid){
+        //int num = this.getHpMoves();
         int x = this.getPosX();
         int y = this.getPosY();
         Displayable thing = grid.getObject(x + deltaX, y + deltaY);
         if(thing.canTraverse()){
             this.setPosX(x + deltaX);
             this.setPosY(y + deltaY);
+            // num--;
+            // if(num == 0){
+            //     num = this.getHpMoves();
+            //     this.setHp(this.getHp() + 1);
+            // }
             dungeon.draw();
         }
         else if(thing.isMonster()){
