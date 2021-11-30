@@ -1,6 +1,7 @@
 package game.action.creatureAction;
 
 import game.displayable.creatures.*;
+import game.displayable.*;
 
 public class Remove extends CreatureAction{
 
@@ -11,6 +12,9 @@ public class Remove extends CreatureAction{
     }
     public void performAction(){
         System.out.println("Performing Remove Action");
+        Dungeon dungeon = owner.getDungeon();
+        dungeon.removeMonster(owner);
+        dungeon.draw();
     }
 
     

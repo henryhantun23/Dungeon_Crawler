@@ -11,5 +11,6 @@ public class Teleport extends CreatureAction{
 
     public void performAction(){
         System.out.println("Performing Teleport Action");
+        
     }
 }

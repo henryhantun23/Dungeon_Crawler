@@ -1,7 +1,6 @@
 package game.action.creatureAction;
 
 import game.displayable.creatures.*;
-import game.displayable.creatures.*;
 import game.ObjectDisplayGrid;
 
 

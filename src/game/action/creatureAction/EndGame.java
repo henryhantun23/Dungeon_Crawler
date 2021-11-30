@@ -13,6 +13,8 @@ public class EndGame extends CreatureAction{
     public void performAction(){
         System.out.println("Performing EndGame Action");
         ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
+        Player p = (Player) owner;
+        p.setIsGameOver(true);
         grid.writeInfo(message, false);
 
     }

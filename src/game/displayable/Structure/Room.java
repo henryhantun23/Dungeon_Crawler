@@ -2,17 +2,16 @@ package game.displayable.Structure;
 
 import game.displayable.creatures.Creature;
 import game.displayable.creatures.Monster;
-import game.displayable.creatures.Player;
-import game.displayable.item.Armor;
-import game.displayable.item.Sword;
 import game.displayable.item.*;
 import game.ObjectDisplayGrid;
+import game.displayable.*;
 
 import java.util.*;
 
 public class Room extends Structure{
     private int id;
     private int posY;
+    private Dungeon dungeon;
     public Room(int _id){
         System.out.println("Creating room");
         setId(_id);
@@ -34,8 +33,21 @@ public class Room extends Structure{
         items.remove(item);
     }
 
+    public void removeMonster(Creature creature){
+        monsters.remove(creature);
+    }
+
+    public void setDungeon(Dungeon _dungeon){
+        dungeon = _dungeon;
+    }
+
+    public Dungeon getDungeon(){
+        return dungeon;
+    }
+
     public void addMonster (Monster monster){
         System.out.println("add creature");
+        monster.setDungeon(dungeon);
         monsters.add(monster);
     }
 

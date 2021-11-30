@@ -1,15 +1,18 @@
 package game.action.creatureAction;
 
 import game.displayable.creatures.*;
+import game.displayable.*;
 
-public class ChangedDisplayType extends CreatureAction{
+public class ChangeDisplayedType extends CreatureAction{
 
-    public ChangedDisplayType(String _name, Creature _owner){
+    public ChangeDisplayedType(String _name, Creature _owner){
         super(_name, _owner);
     }
 
     public void performAction(){
         System.out.println("Performing ChangedDisplayType Action");
+        owner.setType(actionCharValue);
+        
     }
     
     

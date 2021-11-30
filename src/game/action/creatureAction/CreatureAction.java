@@ -6,7 +6,6 @@ import game.ObjectDisplayGrid;
 
 
 public abstract class CreatureAction extends Action{
-    public String message;
     public String action_name;
     public Creature owner;
 
@@ -16,10 +15,6 @@ public abstract class CreatureAction extends Action{
         owner = _owner;
     }
 
-    public void setActionMessage(String msg){
-        message = msg;
-        System.out.println(msg);
-    }
     // public CreatureAction(Creature owner){
     //     System.out.println("Creating endgame player game.action");
     //     setMessage("Player is killed!");

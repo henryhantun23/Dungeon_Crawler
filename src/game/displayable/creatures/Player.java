@@ -9,7 +9,6 @@ public class Player extends Creature {
     private String name;
     private int room;
     private int serial;
-    private Dungeon dungeon;
     boolean isGameOver = false;
     private int hpMovesTracker;
 
@@ -19,6 +18,7 @@ public class Player extends Creature {
         setName(_name);
         setRoom(_room);
         setSerial(_serial);
+        this.setType("@");
         System.out.println("Player created");
     }
 
@@ -65,9 +65,6 @@ public class Player extends Creature {
         serial = _serial;
         System.out.println("serial set");
     }
-    public char getChar(){
-        return '@';
-    }
     public String getName(){
         return name;
     }
@@ -108,7 +105,6 @@ public class Player extends Creature {
                     for(int i = 0; i < this.getDeathActionSize(); i++){
                         this.getDeathAction(i).performAction();
                     }
-                    isGameOver = true;
                 }
                 if(thing.getHp() <= 0){
                     Creature c = (Creature) thing;

@@ -47,6 +47,12 @@ public class Dungeon extends Displayable{
         }
     }
 
+    public void removeMonster(Creature creature){
+        for(Room room : rooms){
+            room.removeMonster(creature);
+        }
+    }
+
     public void addItem(Item item){
         rooms.get(0).addItem(item);
     }
@@ -63,6 +69,7 @@ public class Dungeon extends Displayable{
     public void addRoom(Room room){ //use array lists
         //System.out.println("added room to dungeon.");
         //rooms[roomCount++] = room;
+        room.setDungeon(this);
         rooms.add(room);
     }
 

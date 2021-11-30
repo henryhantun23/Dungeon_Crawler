@@ -1,6 +1,7 @@
 package game.action.creatureAction;
 
 import game.displayable.creatures.*;
+import game.displayable.*;
 
 public class UpdateDisplay extends CreatureAction{
 
@@ -10,6 +11,8 @@ public class UpdateDisplay extends CreatureAction{
 
     public void performAction(){
         System.out.println("Performing UpdateDisplay Action");
+        Dungeon dungeon = owner.getDungeon();
+        dungeon.draw();
     }
     
 }

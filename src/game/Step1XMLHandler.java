@@ -2,7 +2,10 @@ package game;
 
 
 import game.action.Action;
-import game.action.creatureAction.CreatureAction;
+import game.action.ItemAction.BlessArmor;
+import game.action.ItemAction.BlessCurseOwner;
+import game.action.ItemAction.Hallucinate;
+import game.action.ItemAction.ItemAction;
 import game.displayable.Displayable;
 import game.displayable.Dungeon;
 import game.displayable.Structure.Passage;
@@ -34,7 +37,7 @@ public class Step1XMLHandler extends DefaultHandler {
     private Room roomBeingParsed = null;
     private Monster monsterBeingParsed = null;
     private Player playerBeingParsed = null;
-    private CreatureAction creatureActionBeingParsed = null;
+    private Action actionBeingParsed = null;
     private Passage passageBeingParsed = null;
     private Armor armorBeingParsed = null;
     private Sword swordBeingParsed = null;
@@ -102,7 +105,6 @@ public class Step1XMLHandler extends DefaultHandler {
            
             String name = attributes.getValue("name");
             String type = attributes.getValue("type");
-            String actionMessage = attributes.getValue("actionMessage");
             Creature creature = null;
             if(playerBeingParsed != null){
                 creature = playerBeingParsed;
@@ -110,11 +112,13 @@ public class Step1XMLHandler extends DefaultHandler {
             if(monsterBeingParsed != null){
                 creature = monsterBeingParsed;
             }
-            creatureActionBeingParsed = null;
+            CreatureAction creatureActionBeingParsed = null;
             switch(name){
-                case "ChangedDisplayType": creatureActionBeingParsed = new ChangedDisplayType(name, creature);
+                case "ChangeDisplayedType": creatureActionBeingParsed = new ChangeDisplayedType(name, creature);
                 break;
                 case "DropPack": creatureActionBeingParsed = new DropPack(name, creature);
+                break;
+                case "EmptyPack": creatureActionBeingParsed = new EmptyPack(name, creature);
                 break;
                 case "EndGame": creatureActionBeingParsed = new EndGame(name, creature);
                 break;
@@ -130,15 +134,33 @@ public class Step1XMLHandler extends DefaultHandler {
                 default: System.out.println("Unknown action class " + name);
             }
            
-
-            
             if(type.equals("death")){
                 creature.addDeathAction(creatureActionBeingParsed);
             } else {
                 creature.addHitAction(creatureActionBeingParsed);
             }
+            actionBeingParsed = creatureActionBeingParsed;
 
-        } else if (qName.equalsIgnoreCase("Passages")){
+        } else if (qName.equalsIgnoreCase("ItemAction")){
+            String name = attributes.getValue("name");
+            Item item = null;
+            if(scrollBeingParsed != null){
+                item = scrollBeingParsed;
+            }
+            ItemAction itemActionBeingParsed = null;
+            switch(name){
+                case "BlessCurseOwner": itemActionBeingParsed = new BlessCurseOwner(item);
+                break;
+                case "Hallucinate": itemActionBeingParsed = new Hallucinate(item);
+                break;
+                case "BlessArmor": itemActionBeingParsed = new BlessArmor(item);
+                break;
+                default: System.out.println("Unknown item action class " + name);
+            }
+            actionBeingParsed = itemActionBeingParsed;
+        }
+        
+        else if (qName.equalsIgnoreCase("Passages")){
 
         }
 
@@ -250,14 +272,17 @@ public class Step1XMLHandler extends DefaultHandler {
         } else if (qName.equalsIgnoreCase("actionMessage")) {
             //game.action = (CreatureAction) creatureActionBeingParsed;
             //CreatureAction.setActionMessage(data.toString());
-            creatureActionBeingParsed.setActionMessage(data.toString());
+            actionBeingParsed.setMessage(data.toString());
             
         } /*else if (qName.equalsIgnoreCase("ItemIntValue")) {
             displayable[disNum].setItemIntValue(data.toString());
         }*/
+        else if (qName.equalsIgnoreCase("actionCharValue")) {
+            actionBeingParsed.setCharValue(data.toString());
+        }
         
         else if (qName.equalsIgnoreCase("CreatureAction")) {
-            creatureActionBeingParsed = null;
+            actionBeingParsed = null;
             //disNum--;
         } else if (qName.equalsIgnoreCase("Player")) {
             playerBeingParsed.globalize(roomBeingParsed.getPosX(), roomBeingParsed.getPosY());
