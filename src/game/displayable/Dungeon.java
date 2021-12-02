@@ -102,13 +102,18 @@ public class Dungeon extends Displayable{
         for(int i=0; i < passages.size(); i++){
             passages.get(i).draw();
         }
+        for(int i = 0; i < rooms.size(); i++){
+            rooms.get(i).drawInside(); // drawing stuff inside rooms
+        }
 
         if(player != null){
             player.draw();
             int hp = player.getHp();
             player.drawHpString(hp);
+        } else{
+            grid.repaintGrid(); // repaint is called from drawHpString
+
         }
-        grid.repaintGrid();
 
 
         // String str = "Get out of me swamp";

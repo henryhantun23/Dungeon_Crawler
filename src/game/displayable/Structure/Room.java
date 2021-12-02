@@ -79,6 +79,10 @@ public class Room extends Structure{
 
             }
         }
+    }
+
+    public void drawInside(){
+
         for(int i=0; i < monsters.size(); i++){
             monsters.get(i).draw();
         }
