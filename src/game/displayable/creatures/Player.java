@@ -5,6 +5,7 @@ import game.displayable.*;
 import game.displayable.item.Scroll;
 import java.util.*;
 import game.ObjectDisplayGrid;
+import game.action.ItemAction.ItemAction;
 
 public class Player extends Creature {
     private String name;
@@ -12,11 +13,13 @@ public class Player extends Creature {
     private int serial;
     boolean isGameOver = false;
     private int hpMovesTracker;
+    private int hMovesTracker;
 
     public List<Item> pack = new ArrayList<Item>();
     public Item equipped_armor = null;
     public Item equipped_sword = null;
     public Item read_scroll = null;
+    public List<ItemAction> actions;
 
     public Player(String _name, int _room, int _serial) {
         setName(_name);
@@ -133,12 +136,20 @@ public class Player extends Creature {
     }
 
     public void readItem(int index){
+
+        ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
         Item item = pack.get(index);
         if(item.canRead()){
-            
-            
+            Scroll scroll = (Scroll) item;
+            actions = scroll.getActions();
+            for(ItemAction action : actions){
+                System.out.print("Calling perform action");
+                action.performAction();
+            }
         }
-        
+        else {
+            grid.writeInfo("The item you selected is not readable", false);
+        }
     }
 
     public void setName(String _name){
@@ -174,20 +185,22 @@ public class Player extends Creature {
         int x = this.getPosX();
         int y = this.getPosY();
         Displayable thing = grid.getObject(x + deltaX, y + deltaY);
-        int hMovesTracker = grid.getHallucinateMoves();
+        hMovesTracker = grid.getHallucinateMoves(); // Hall
         if(thing != null){
             if(thing.canTraverse()){
                 this.setPosX(x + deltaX);
                 this.setPosY(y + deltaY);
                 hpMovesTracker--;
-                hMovesTracker--;
+                hMovesTracker--; // Hall
                 if(hpMovesTracker == 0){
                     hpMovesTracker = this.getHpMoves();
                     this.setHp(this.getHp() + 1);
                     grid.writeInfo("Hp increased by 1", false);
                 }
-                if(hMovesTracker == 0){
-                    grid.setHallucinating(false, hMovesTracker);
+                if(hMovesTracker == 0){ // Hall
+                    grid.setHallucinating(false, hMovesTracker); // Hall
+                }else if (hMovesTracker > 0){
+                    grid.setHallucinating(true, hMovesTracker);
                 }
                 dungeon.draw();
             }

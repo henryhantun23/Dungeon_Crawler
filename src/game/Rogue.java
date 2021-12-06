@@ -28,7 +28,7 @@ public class Rogue implements Runnable{
            fileName = "src/xmlfiles/" + args[0];
            break;
         default:
-            fileName = "src/xmlfiles/dropPack.xml";
+            fileName = "src/xmlfiles/hallucinate.xml";
            //System.out.println("java Test <xmlfilename>");
         }
 

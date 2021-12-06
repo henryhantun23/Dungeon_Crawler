@@ -9,4 +9,7 @@ public class ItemAction extends Action{
     public ItemAction(Item _owner){
         owner = _owner;
     }
+    public void performAction(){
+        System.out.println("Called super perform action");
+    }
 }

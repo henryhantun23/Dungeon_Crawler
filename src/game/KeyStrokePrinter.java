@@ -69,14 +69,28 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                     if (Character.isDigit(ch) && ch != '0' && (ch - '1') < player.pack.size()) {
                         int index = ch - '0' - 1;
                         player.wear_Armor(index);
+                    }else{
+                        player.getDungeon().drawInfo("Need to give a digit 1-9 that is an index of the pack");
                     }
                     equipArmor = false;
                 } else if (equipSword) {
                     if (Character.isDigit(ch) && ch != '0' && (ch - '1') < player.pack.size()) {
                         int index = ch - '0' - 1;
                         player.Take_Sword(index);
+                    }else{
+                        player.getDungeon().drawInfo("Need to give a digit 1-9 that is an index of the pack");
                     }
                     equipSword = false;
+                } if(readScroll){
+                    if(Character.isDigit(ch) && ch != '0' && (ch - '0') <= player.pack.size()){
+                        int index = ch - '0' - 1;
+                        player.readItem(index);
+                        System.out.println("Reading item");
+                    }else{
+                        player.getDungeon().drawInfo("Need to give a digit 1-9 that is an index of the pack");
+                    }
+                    readScroll = false;
+
                 }
                 else if (ch == 'h'){
                     System.out.println("moving player left");
@@ -105,6 +119,9 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 else if (ch == 't'){
                     equipSword = true;
                     System.out.println("Equipped Sword");
+                }
+                else if (ch == 'r'){
+                    readScroll = true;
                 }
             }
         }

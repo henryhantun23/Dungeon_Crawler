@@ -17,7 +17,4 @@ public class Hallucinate extends ItemAction{
         grid.setHallucinating(true, this.intVal);
         grid.writeInfo(this.getMessage(), false);
     }
-
-
-    
 }

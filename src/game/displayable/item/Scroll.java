@@ -35,4 +35,9 @@ public class Scroll extends Item{
     public boolean canRead(){
         return true;
     }
+
+    public List<ItemAction> getActions(){
+        return actions;
+    }
 }
+
