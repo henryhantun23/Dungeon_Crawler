@@ -205,13 +205,13 @@ public class Player extends Creature {
                 dungeon.draw();
             }
             else if(thing.isMonster()){
-                this.attack(this, (Creature) thing, false);
-                thing.attack((Creature) thing, this, true);
-                if(this.getHp() <= 0){ //TODO move to actions
+                this.attack(this, (Creature) thing, false); // player attacks creature
+                if(this.getHp() <= 0){ 
                     for(int i = 0; i < this.getDeathActionSize(); i++){
                         this.getDeathAction(i).performAction();
                     }
                 }
+                thing.attack((Creature) thing, this, true); // creature attacks player
                 if(thing.getHp() <= 0){
                     Creature c = (Creature) thing;
                     for(int i = 0; i < c.getDeathActionSize(); i++){
