@@ -58,44 +58,61 @@ public class Player extends Creature {
     }
     public void wear_Armor(int index){
 
+        ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
         Item item = pack.get(index);
         if(item == null) {
             System.out.println("No items exist in the given inventory spot");
+            grid.writeInfo("No items exist in the given inventory spot", false);
         }else if (item instanceof Armor) {
             equipped_armor = item;
             drawHpString(getHp() + equipped_armor.getHp());
             System.out.println(equipped_armor.getHp());
             System.out.println("Selected Armor is now equipped");
+            grid.writeInfo("Selected Armor is now equipped", false);
+
+            
         }else {
             System.out.println("Item name " + item.getName());
             System.out.println("Selected item is not Armor");
+            grid.writeInfo("Selected item is not Armor", false);
+
         }
 
     }
     public void Take_Sword(int index) {
+
+        ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
         Item item = pack.get(index);
         if(item == null) {
             System.out.println("No items exist in the given inventory spot");
+            grid.writeInfo("No items exist in the given inventory spot", false);
         } else if (item instanceof Sword){
             equipped_sword = item;
             System.out.println("Player is wielding the selected sword");
+            grid.writeInfo("Player is wielding the selected sword", false);
         } else {
             System.out.println("Item name " + item.getName());
             System.out.println("Selected Item is not a Sword.");
+            grid.writeInfo("Selected Item is not a Sword.", false);
         }
     }
 
     public void Take_scroll(int index) {
+
+        ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
         Item item = pack.get(index);
         if (item == null) {
             System.out.println("No items exist in that inventory spot");
+            grid.writeInfo("No items exist in the given inventory spot", false);
         }else if (item instanceof Scroll) {
             read_scroll = item;
             System.out.println("Player has selected the scroll");
+            grid.writeInfo("Player has selected the scroll", false);
 
         }else {
             System.out.println("Item name " + item.getName());
             System.out.println("Selected Item is not a scroll");
+            grid.writeInfo("Selected Item is not a scroll", false);
         }
     }
     public int getHp(){
