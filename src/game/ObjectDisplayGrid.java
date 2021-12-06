@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubject {
 
@@ -21,9 +22,16 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
     private static int topHeight;
     private static int gameHeight;
     private static int bottomHeight;
+    private int hMoves = 0;
 
     private static int width;
     private static ObjectDisplayGrid instance = null;
+
+    private boolean hallucinating = false;
+
+    char[] chars = {'T', 'S', 'X', '#', '.', '+', ']', '?', '|', 'H'};
+    Random rand = new Random();
+
 
     // csn add more parameters, call before getInstance
     public static void setGridSize(int _width, int __topHeight, int _gameHeight, int _bottomHeight){
@@ -124,8 +132,29 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         return obj;
     }
 
+    public void setHallucinating(boolean in, int moves){
+        hallucinating = in;
+        hMoves = moves;
+    }
+
+    public int getHallucinateMoves(){
+        return hMoves;
+    }
+
+    public boolean getHallucinating(){
+        return hallucinating;
+    }
+
     private void writeToTerminal(int x, int y) {
-        char ch = objectGrid[x][y].getChar();
+        char ch;
+        if(hallucinating){
+            int bound = chars.length;
+            int random = rand.nextInt(bound);
+            ch = chars[random];
+        }
+        else{
+            ch = objectGrid[x][y].getChar();
+        }
         terminal.write(ch, x, y + topHeight); // can offset
         //terminal.repaint();
     }

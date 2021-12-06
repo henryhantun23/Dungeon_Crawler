@@ -2,6 +2,7 @@ package game.displayable.creatures;
 
 import game.displayable.item.*;
 import game.displayable.*;
+import game.displayable.item.Scroll;
 import java.util.*;
 import game.ObjectDisplayGrid;
 
@@ -53,6 +54,15 @@ public class Player extends Creature {
         dungeon.draw();        
     }
 
+    public void readItem(int index){
+        Item item = pack.get(index);
+        if(item.canRead()){
+            
+            
+        }
+        
+    }
+
     public void setName(String _name){
         name = _name;
         System.out.println("name set");
@@ -86,15 +96,20 @@ public class Player extends Creature {
         int x = this.getPosX();
         int y = this.getPosY();
         Displayable thing = grid.getObject(x + deltaX, y + deltaY);
+        int hMovesTracker = grid.getHallucinateMoves();
         if(thing != null){
             if(thing.canTraverse()){
                 this.setPosX(x + deltaX);
                 this.setPosY(y + deltaY);
                 hpMovesTracker--;
+                hMovesTracker--;
                 if(hpMovesTracker == 0){
                     hpMovesTracker = this.getHpMoves();
                     this.setHp(this.getHp() + 1);
                     grid.writeInfo("Hp increased by 1", false);
+                }
+                if(hMovesTracker == 0){
+                    grid.setHallucinating(false, hMovesTracker);
                 }
                 dungeon.draw();
             }

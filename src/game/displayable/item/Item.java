@@ -14,4 +14,8 @@ public class Item extends Displayable{
     public String getName(){
         return this.getName();
     }
+
+    public boolean canRead(){
+        return false;
+    }
 }

@@ -14,6 +14,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
     private ObjectDisplayGrid displayGrid;
     private Player player;
     private boolean dropItem = false;
+    private boolean readScroll = false;
 
     public KeyStrokePrinter(ObjectDisplayGrid grid, Player _player) {
         inputQueue = new ConcurrentLinkedQueue<>();
@@ -62,6 +63,14 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                         player.getDungeon().drawInfo("Need to give a digit 1-9 that is an index of the pack");
                     }
                     dropItem = false;
+                } if(readScroll){
+                    if(Character.isDigit(ch) && ch != '0' && (ch - '0') <= player.pack.size()){
+                        int index = ch - '0' - 1;
+                        player.readItem(index);
+                    }
+                        else{
+                            player.getDungeon().drawInfo("Need to give a digit 1-9 that is an index of the pack");
+                        }
                 }
                 else if (ch == 'h'){
                     System.out.println("moving player left");
@@ -85,6 +94,9 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 }else if (ch == 'd'){
                     System.out.println("dropping item");
                     dropItem = true;
+                }else if (ch == 'r'){
+                    System.out.println("reading scroll");
+                    readScroll = true;
                 }
             }
         }

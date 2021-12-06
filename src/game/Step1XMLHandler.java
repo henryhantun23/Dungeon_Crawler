@@ -143,21 +143,18 @@ public class Step1XMLHandler extends DefaultHandler {
 
         } else if (qName.equalsIgnoreCase("ItemAction")){
             String name = attributes.getValue("name");
-            Item item = null;
-            if(scrollBeingParsed != null){
-                item = scrollBeingParsed;
-            }
             ItemAction itemActionBeingParsed = null;
             switch(name){
-                case "BlessCurseOwner": itemActionBeingParsed = new BlessCurseOwner(item);
+                case "BlessCurseOwner": itemActionBeingParsed = new BlessCurseOwner(scrollBeingParsed);
                 break;
-                case "Hallucinate": itemActionBeingParsed = new Hallucinate(item);
+                case "Hallucinate": itemActionBeingParsed = new Hallucinate(scrollBeingParsed);
                 break;
-                case "BlessArmor": itemActionBeingParsed = new BlessArmor(item);
+                case "BlessArmor": itemActionBeingParsed = new BlessArmor(scrollBeingParsed);
                 break;
                 default: System.out.println("Unknown item action class " + name);
             }
             actionBeingParsed = itemActionBeingParsed;
+            scrollBeingParsed.addItemAction(itemActionBeingParsed);
         }
         
         else if (qName.equalsIgnoreCase("Passages")){
@@ -274,9 +271,9 @@ public class Step1XMLHandler extends DefaultHandler {
             //CreatureAction.setActionMessage(data.toString());
             actionBeingParsed.setMessage(data.toString());
             
-        } /*else if (qName.equalsIgnoreCase("ItemIntValue")) {
-            displayable[disNum].setItemIntValue(data.toString());
-        }*/
+        } else if (qName.equalsIgnoreCase("ItemIntValue")) {
+            actionBeingParsed.setIntValue(Integer.parseInt(data.toString()));
+        }
         else if (qName.equalsIgnoreCase("actionCharValue")) {
             actionBeingParsed.setCharValue(data.toString());
         }
