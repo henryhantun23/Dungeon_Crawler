@@ -39,6 +39,7 @@ public class Step1XMLHandler extends DefaultHandler {
     private Player playerBeingParsed = null;
     private Action actionBeingParsed = null;
     private Passage passageBeingParsed = null;
+    private Item itemBeingParsed = null;
     private Armor armorBeingParsed = null;
     private Sword swordBeingParsed = null;
     private Scroll scrollBeingParsed = null;
@@ -176,6 +177,7 @@ public class Step1XMLHandler extends DefaultHandler {
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
             armorBeingParsed = new Armor(name, room, serial);
+            itemBeingParsed = armorBeingParsed;
             if(playerBeingParsed != null){
                 playerBeingParsed.addItem(armorBeingParsed);
             }
@@ -190,6 +192,7 @@ public class Step1XMLHandler extends DefaultHandler {
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
             swordBeingParsed = new Sword(name, room, serial);
+            itemBeingParsed = swordBeingParsed;
             if(playerBeingParsed != null){
                 playerBeingParsed.addItem(swordBeingParsed);
             }
@@ -205,6 +208,7 @@ public class Step1XMLHandler extends DefaultHandler {
             int room = Integer.parseInt(attributes.getValue("room"));
             int serial = Integer.parseInt(attributes.getValue("serial"));
             scrollBeingParsed = new Scroll(name, room, serial);
+            itemBeingParsed = scrollBeingParsed;
             if(playerBeingParsed != null){
                 playerBeingParsed.addItem(scrollBeingParsed);
             }
@@ -270,8 +274,12 @@ public class Step1XMLHandler extends DefaultHandler {
             //game.action = (CreatureAction) creatureActionBeingParsed;
             //CreatureAction.setActionMessage(data.toString());
             actionBeingParsed.setMessage(data.toString());
-            
-        } else if (qName.equalsIgnoreCase("actionIntValue")) {
+
+        }
+        else if (qName.equalsIgnoreCase("ItemIntValue")){
+            itemBeingParsed.setHp(Integer.parseInt(data.toString()));
+        }
+        else if (qName.equalsIgnoreCase("actionIntValue")) {
             actionBeingParsed.setIntValue(Integer.parseInt(data.toString()));
         }
         else if (qName.equalsIgnoreCase("actionCharValue")) {
@@ -305,15 +313,18 @@ public class Step1XMLHandler extends DefaultHandler {
         } else if(qName.equalsIgnoreCase("Armor")) {
             armorBeingParsed.globalize(roomBeingParsed.getPosX(), roomBeingParsed.getPosY());
             armorBeingParsed = null;
+            itemBeingParsed = null;
             disNum--;
 
         } else if(qName.equalsIgnoreCase("Sword")){
             swordBeingParsed.globalize(roomBeingParsed.getPosX(), roomBeingParsed.getPosY());
             swordBeingParsed = null;
+            itemBeingParsed = null;
             disNum--;
         } else if(qName.equalsIgnoreCase("Scroll")){
             scrollBeingParsed.globalize(roomBeingParsed.getPosX(), roomBeingParsed.getPosY());
             scrollBeingParsed = null;
+            itemBeingParsed = null;
             disNum--;
         }
 

@@ -63,7 +63,8 @@ public class Player extends Creature {
             System.out.println("No items exist in the given inventory spot");
         }else if (item instanceof Armor) {
             equipped_armor = item;
-            drawHpString(getHp());
+            drawHpString(getHp() + equipped_armor.getHp());
+            System.out.println(equipped_armor.getHp());
             System.out.println("Selected Armor is now equipped");
         }else {
             System.out.println("Item name " + item.getName());
