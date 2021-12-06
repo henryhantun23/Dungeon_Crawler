@@ -14,6 +14,9 @@ public class Player extends Creature {
     private int hpMovesTracker;
 
     public List<Item> pack = new ArrayList<Item>();
+    public Item equipped_armor = null;
+    public Item equipped_sword = null;
+    public Item read_scroll = null;
 
     public Player(String _name, int _room, int _serial) {
         setName(_name);
@@ -52,6 +55,63 @@ public class Player extends Creature {
         item.setPosY(this.getPosY());
         dungeon.addItem(item);
         dungeon.draw();        
+    }
+    public void wear_Armor(int index){
+
+        Item item = pack.get(index);
+        if(item == null) {
+            System.out.println("No items exist in the given inventory spot");
+        }else if (item instanceof Armor) {
+            equipped_armor = item;
+            drawHpString(getHp());
+            System.out.println("Selected Armor is now equipped");
+        }else {
+            System.out.println("Item name " + item.getName());
+            System.out.println("Selected item is not Armor");
+        }
+
+    }
+    public void Take_Sword(int index) {
+        Item item = pack.get(index);
+        if(item == null) {
+            System.out.println("No items exist in the given inventory spot");
+        } else if (item instanceof Sword){
+            equipped_sword = item;
+            System.out.println("Player is wielding the selected sword");
+        } else {
+            System.out.println("Item name " + item.getName());
+            System.out.println("Selected Item is not a Sword.");
+        }
+    }
+
+    public void Take_scroll(int index) {
+        Item item = pack.get(index);
+        if (item == null) {
+            System.out.println("No items exist in that inventory spot");
+        }else if (item instanceof Scroll) {
+            read_scroll = item;
+            System.out.println("Player has selected the scroll");
+
+        }else {
+            System.out.println("Item name " + item.getName());
+            System.out.println("Selected Item is not a scroll");
+        }
+    }
+    public int getHp(){
+        if (equipped_armor == null){
+            return super.getHp();
+        }
+        return super.getHp() + equipped_armor.getItem_value();
+    }
+
+    public void setHp(int Hp){
+        if (equipped_armor == null){
+            super.setHp(Hp); //override
+        }
+        else {
+            super.setHp(Hp - equipped_armor.getItem_value());
+        }
+        System.out.println("setHP");
     }
 
     public void readItem(int index){
@@ -143,8 +203,13 @@ public class Player extends Creature {
     // player.printPack
     public String printPack(){
         String str = "";
-        for(int i = 0; i < pack.size(); i++){
+        for(int i = 0; i < pack.size(); i++) {
             str += (i + 1) + ": " + pack.get(i).getName() + " ";
+            if (pack.get(i) == equipped_armor) {
+                str += "(a) ";
+            }else if (pack.get(i) == equipped_sword) {
+                str += "(w) ";
+            }
         }
         return str;
     }

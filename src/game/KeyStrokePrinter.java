@@ -14,6 +14,8 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
     private ObjectDisplayGrid displayGrid;
     private Player player;
     private boolean dropItem = false;
+    private boolean equipArmor = false;
+    private boolean equipSword = false;
     private boolean readScroll = false;
 
     public KeyStrokePrinter(ObjectDisplayGrid grid, Player _player) {
@@ -63,14 +65,18 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                         player.getDungeon().drawInfo("Need to give a digit 1-9 that is an index of the pack");
                     }
                     dropItem = false;
-                } if(readScroll){
-                    if(Character.isDigit(ch) && ch != '0' && (ch - '0') <= player.pack.size()){
+                } else if(equipArmor) {
+                    if (Character.isDigit(ch) && ch != '0' && (ch - '1') < player.pack.size()) {
                         int index = ch - '0' - 1;
-                        player.readItem(index);
+                        player.wear_Armor(index);
                     }
-                        else{
-                            player.getDungeon().drawInfo("Need to give a digit 1-9 that is an index of the pack");
-                        }
+                    equipArmor = false;
+                } else if (equipSword) {
+                    if (Character.isDigit(ch) && ch != '0' && (ch - '1') < player.pack.size()) {
+                        int index = ch - '0' - 1;
+                        player.Take_Sword(index);
+                    }
+                    equipSword = false;
                 }
                 else if (ch == 'h'){
                     System.out.println("moving player left");
@@ -87,16 +93,18 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 }else if (ch == 'p'){
                     System.out.println("picking up item");
                     player.pickUpItem();
-
                 }else if (ch == 'i'){
                     System.out.println("displaying pack and info");
                     player.getDungeon().drawPack();
                 }else if (ch == 'd'){
                     System.out.println("dropping item");
                     dropItem = true;
-                }else if (ch == 'r'){
-                    System.out.println("reading scroll");
-                    readScroll = true;
+                }else if(ch == 'w'){
+                    equipArmor = true;
+                }
+                else if (ch == 't'){
+                    equipSword = true;
+                    System.out.println("Equipped Sword");
                 }
             }
         }

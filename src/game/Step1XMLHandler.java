@@ -271,7 +271,7 @@ public class Step1XMLHandler extends DefaultHandler {
             //CreatureAction.setActionMessage(data.toString());
             actionBeingParsed.setMessage(data.toString());
             
-        } else if (qName.equalsIgnoreCase("ItemIntValue")) {
+        } else if (qName.equalsIgnoreCase("actionIntValue")) {
             actionBeingParsed.setIntValue(Integer.parseInt(data.toString()));
         }
         else if (qName.equalsIgnoreCase("actionCharValue")) {
