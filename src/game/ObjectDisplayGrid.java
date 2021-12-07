@@ -159,7 +159,13 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         //terminal.repaint();
     }
 
+    // NO-OP to be easy to revert - repaint called in many places
     public void repaintGrid(){
+        //terminal.repaint();
+    }
+    
+    // repaint is being called at the end of keystroke printer only
+    public void theOneRepaint(){
         terminal.repaint();
     }
 
@@ -168,7 +174,7 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         for(int i = str.length(); i < width; i++){
             terminal.write(' ', i, y);
         }
-        terminal.repaint();
+        repaintGrid();
     }
 
     public void writeToBottom(String str, int y){
@@ -176,7 +182,7 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         for(int i = str.length(); i < width; i++){
             terminal.write(' ', i, y + topHeight + gameHeight);
         }
-        terminal.repaint();
+        repaintGrid();
     }
 
     public void writeInfo(String str, boolean writeSecond){
@@ -186,6 +192,6 @@ public class ObjectDisplayGrid extends JFrame implements KeyListener, InputSubje
         else{
             writeToBottom("Info: " + str, 2);
         }
-        terminal.repaint();
+        repaintGrid();
     }
 }

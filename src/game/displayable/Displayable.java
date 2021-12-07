@@ -3,7 +3,6 @@ package game.displayable;
 import game.ObjectDisplayGrid;
 import java.util.Random;
 import game.displayable.creatures.*;
-import game.displayable.item.Item;
 
 public class Displayable {
     private int posX;
@@ -153,7 +152,6 @@ public class Displayable {
         String str = attacker.getName() + " dealt " + hpHit + " damage to " + attackee.getName();
         grid.writeInfo(str, writeSecond);
     }
-
 
     public boolean isPlayer(){
         return false;

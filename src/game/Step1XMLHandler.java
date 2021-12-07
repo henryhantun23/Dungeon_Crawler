@@ -3,7 +3,6 @@ package game;
 
 import game.action.Action;
 import game.action.ItemAction.BlessArmor;
-import game.action.ItemAction.BlessCurseOwner;
 import game.action.ItemAction.Hallucinate;
 import game.action.ItemAction.ItemAction;
 import game.displayable.Displayable;
@@ -146,8 +145,6 @@ public class Step1XMLHandler extends DefaultHandler {
             String name = attributes.getValue("name");
             ItemAction itemActionBeingParsed = null;
             switch(name){
-                case "BlessCurseOwner": itemActionBeingParsed = new BlessCurseOwner(scrollBeingParsed);
-                break;
                 case "Hallucinate": itemActionBeingParsed = new Hallucinate(scrollBeingParsed);
                 break;
                 case "BlessArmor": itemActionBeingParsed = new BlessArmor(scrollBeingParsed);
@@ -277,6 +274,7 @@ public class Step1XMLHandler extends DefaultHandler {
 
         }
         else if (qName.equalsIgnoreCase("ItemIntValue")){
+            // TODO: switch to setItemIntValue OR remove setItemIntValue
             itemBeingParsed.setHp(Integer.parseInt(data.toString()));
         }
         else if (qName.equalsIgnoreCase("actionIntValue")) {

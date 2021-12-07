@@ -12,7 +12,7 @@ public class Hallucinate extends ItemAction{
     // keep track of steps
     // set hallucinate back to false
 
-    public void performAction(){
+    public void performAction(Player player){
         ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
         grid.setHallucinating(true, this.intVal);
         grid.writeInfo(this.getMessage(), false);

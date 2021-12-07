@@ -148,6 +148,16 @@ public class Player extends Creature {
         System.out.println("setHP");
     }
 
+    public void setHp(int Hp, String name){
+        if (equipped_armor == null){
+            super.setHp(Hp); //override
+        }
+        else {
+            super.setHp(Hp - equipped_armor.getItem_value());
+        }
+        equipped_armor.setName(name);
+    }
+
     public void readItem(int index){
 
         ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
@@ -157,7 +167,7 @@ public class Player extends Creature {
             actions = scroll.getActions();
             for(ItemAction action : actions){
                 System.out.print("Calling perform action");
-                action.performAction();
+                action.performAction(this);
             }
         }
         else {

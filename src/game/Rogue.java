@@ -28,7 +28,7 @@ public class Rogue implements Runnable{
            fileName = "src/xmlfiles/" + args[0];
            break;
         default:
-            fileName = "src/xmlfiles/testDrawing.xml";
+            fileName = "src/xmlfiles/badScroll.xml";
            //System.out.println("java Test <xmlfilename>");
         }
 

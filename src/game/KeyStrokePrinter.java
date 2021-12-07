@@ -83,7 +83,6 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                     if(Character.isDigit(ch) && ch != '0' && (ch - '0') <= player.pack.size()){
                         int index = ch - '0' - 1;
                         player.readItem(index);
-                        player.getDungeon().drawInfo("Reading Item");
                         System.out.println("Reading item");
                     }else{
                         player.getDungeon().drawInfo("Need to give a digit 1-9 that is an index of the pack");
@@ -131,12 +130,14 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                     player.getDungeon().drawInfo("Select a scroll to read");
                 }
 
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                displayGrid.repaintGrid(); 
+                // the not great repaint solution: redraw everything again
+                // try {
+                //     Thread.sleep(100);
+                // } catch (InterruptedException e) {
+                //     e.printStackTrace();
+                // }
+               // player.getDungeon().draw(); 
+               displayGrid.theOneRepaint();
             }
         }
         return true;
