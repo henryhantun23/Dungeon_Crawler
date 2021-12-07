@@ -123,6 +123,13 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 else if (ch == 'r'){
                     readScroll = true;
                 }
+
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                displayGrid.repaintGrid(); 
             }
         }
         return true;

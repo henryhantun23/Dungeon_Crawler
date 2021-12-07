@@ -110,11 +110,11 @@ public class Dungeon extends Displayable{
             player.draw();
             int hp = player.getHp();
             player.drawHpString(hp);
-        } else{
-            grid.repaintGrid(); // repaint is called from drawHpString
-
+        } else {
+            grid.repaintGrid(); 
         }
-
+        
+        // repaint is called from drawHpString
 
         // String str = "Get out of me swamp";
         // grid.writeToTop(str, 0);

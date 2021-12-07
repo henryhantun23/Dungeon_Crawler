@@ -32,7 +32,7 @@ public class Creature extends Displayable{
         hitActions.add(ha);
     }
     public Boolean canTraverse(){
-        return false;
+        return this.getHp() <= 0;
     }
     public CreatureAction getDeathAction(int i){
         return deathActions.get(i);
