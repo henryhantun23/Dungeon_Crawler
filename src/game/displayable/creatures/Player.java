@@ -69,9 +69,8 @@ public class Player extends Creature {
         }else if (item instanceof Armor) {
             equipped_armor = item;
             drawHpString(getHp() + equipped_armor.getHp());
-            System.out.println(equipped_armor.getHp());
-            System.out.println("Selected Armor is now equipped");
-            grid.writeInfo("Selected Armor is now equipped", false);
+            System.out.println(item.getName() + " is now equipped");
+            grid.writeInfo(item.getName() + " is now equipped", false);
 
             
         }else {
@@ -82,6 +81,20 @@ public class Player extends Creature {
         }
 
     }
+    public void change_armor(){
+        ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
+        Item item = equipped_armor;
+        if(item != null) {
+            grid.writeInfo(equipped_armor.getName() + " has been unequipped", false );
+            drawHpString(getHp() - equipped_armor.getHp());
+            System.out.println(equipped_armor.getName() + " has been unequipped");
+            equipped_armor = null;
+
+        } else if (item == null){
+            grid.writeInfo("No armor currently equipped", false);
+            System.out.println("No armor currently equipped");
+        }
+    }
     public void Take_Sword(int index) {
 
         ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
@@ -91,8 +104,8 @@ public class Player extends Creature {
             grid.writeInfo("No items exist in the given inventory spot", false);
         } else if (item instanceof Sword){
             equipped_sword = item;
-            System.out.println("Player is wielding the selected sword");
-            grid.writeInfo("Player is wielding the selected sword", false);
+            System.out.println("Player is wielding the " + item.getName());
+            grid.writeInfo("Player is wielding the " + item.getName(), false);
         } else {
             System.out.println("Item name " + item.getName());
             System.out.println("Selected Item is not a Sword.");
@@ -240,6 +253,8 @@ public class Player extends Creature {
                 str += "(a) ";
             }else if (pack.get(i) == equipped_sword) {
                 str += "(w) ";
+            } else{
+                str += " ";
             }
         }
         return str;
