@@ -143,7 +143,7 @@ public class Displayable {
 
     public void attack(Creature attacker, Creature attackee, boolean writeSecond){
         ObjectDisplayGrid grid = ObjectDisplayGrid.getInstance();
-        int hpHit = rand.nextInt(attacker.getMaxHit() + 1);
+        int hpHit = attacker.damageboost + rand.nextInt(attacker.getMaxHit() + 1);
         int hp = attackee.getHp() - hpHit;
         attackee.setHp(hp);
         for(int i = 0; i < attackee.getHitActionSize(); i++){

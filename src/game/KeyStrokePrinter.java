@@ -128,6 +128,23 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                 }else if (ch == 'r'){
                     readScroll = true;
                     player.getDungeon().drawInfo("Select a scroll to read");
+                }else if (ch == '?') {
+                    player.getDungeon().drawInfo("Commands (H + key for more info): c, d, i, p, r, t, w");
+                }else if (ch == 'H'){
+                    player.getDungeon().drawInfo("Enter command:");
+                    if (ch == 'i') {
+                        player.getDungeon().drawInfo("Displays and refresh pack and info");
+                    }else if (ch == 'w') {
+                        player.getDungeon().drawInfo("Wear Selected Armor within pack index");
+                    }else if (ch == 'c') {
+                        player.getDungeon().drawInfo("Take of currently equipped armor");
+                    }else if (ch == 't') {
+                        player.getDungeon().drawInfo("Wield selected sword within pack index");
+                    }else if (ch == 'd') {
+                        player.getDungeon().drawInfo("Dropped selected item from pack");
+                    }else if (ch == 'r') {
+                        player.getDungeon().drawInfo("Read selected scroll");
+                    }
                 }
 
                 // the not great repaint solution: redraw everything again

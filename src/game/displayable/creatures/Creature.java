@@ -7,6 +7,7 @@ import game.displayable.*;
 import java.util.*;
 
 public class Creature extends Displayable{
+    public int damageboost;
     private String message;
     public Dungeon dungeon;
     private List<CreatureAction> deathActions = new ArrayList<CreatureAction>();

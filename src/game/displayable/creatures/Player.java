@@ -14,6 +14,8 @@ public class Player extends Creature {
     boolean isGameOver = false;
     private int hpMovesTracker;
     private int hMovesTracker;
+    public int damage_boost;
+
 
     public List<Item> pack = new ArrayList<Item>();
     public Item equipped_armor = null;
@@ -106,6 +108,7 @@ public class Player extends Creature {
             grid.writeInfo("No items exist in the given inventory spot", false);
         } else if (item instanceof Sword){
             equipped_sword = item;
+            damage_boost = item.getItem_value();
             System.out.println("Player is wielding the " + item.getName());
             grid.writeInfo("Player is wielding the " + item.getName(), false);
         } else {
