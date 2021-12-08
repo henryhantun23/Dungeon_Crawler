@@ -24,6 +24,6 @@ public class Action {
 
     public void setCharValue(String c){
         actionCharValue = c;
-        
+        System.out.println(actionCharValue);
     }
 }

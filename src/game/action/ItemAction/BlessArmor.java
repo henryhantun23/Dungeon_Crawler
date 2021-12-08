@@ -19,8 +19,10 @@ public class BlessArmor extends ItemAction{
             int hp = player.equipped_armor.getHp();
             hp += intVal;
             player.equipped_armor.setHp(hp); // add name setting as setHP override
-            
+            player.equipped_armor.setName("+" + hp + " Armor");
             grid.writeInfo(str + " cursed! " + intVal + " taken from its effectiveness", false);
+            int player_hp = player.getHp();
+            player.drawHpString(player_hp + intVal);
         }
         else if (player.equipped_sword != null && actionCharValue.equals("w")){
             int hp = player.equipped_sword.getHp();
