@@ -149,6 +149,11 @@ public class Displayable {
         for(int i = 0; i < attackee.getHitActionSize(); i++){
             attackee.getHitActions(i).performAction();
         }
+        if(attackee.getHp() <= 0){
+            for(int i = 0; i < attackee.getDeathActionSize(); i++){
+                attackee.getDeathAction(i).performAction();
+            }
+        }
         String str = attacker.getName() + " dealt " + hpHit + " damage to " + attackee.getName();
         grid.writeInfo(str, writeSecond);
     }

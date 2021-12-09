@@ -17,6 +17,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
     private boolean equipArmor = false;
     private boolean equipSword = false;
     private boolean readScroll = false;
+    private boolean helpCommand = false;
 
     public KeyStrokePrinter(ObjectDisplayGrid grid, Player _player) {
         inputQueue = new ConcurrentLinkedQueue<>();
@@ -63,7 +64,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                         player.dropItem(index);
                         player.getDungeon().drawInfo("Dropping selected item");
                     }else{
-                        player.getDungeon().drawInfo("Need to give a digit 1-9 that is an index of the pack");
+                        player.getDungeon().drawInfo("No item at this index");
                     }
                     dropItem = false;
                 } else if(equipArmor) {
@@ -85,10 +86,26 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                         player.readItem(index);
                         System.out.println("Reading item");
                     }else{
-                        player.getDungeon().drawInfo("Need to give a digit 1-9 that is an index of the pack");
+                        player.getDungeon().drawInfo("No item to read at this index");
                     }
                     readScroll = false;
 
+                }
+                else if(helpCommand){
+                    if (ch == 'i') {
+                        player.getDungeon().drawInfo("Displays and refresh pack and info");
+                    }else if (ch == 'w') {
+                        player.getDungeon().drawInfo("Wear Selected Armor within pack index");
+                    }else if (ch == 'c') {
+                        player.getDungeon().drawInfo("Take off currently equipped armor");
+                    }else if (ch == 't') {
+                        player.getDungeon().drawInfo("Wield selected sword within pack index");
+                    }else if (ch == 'd') {
+                        player.getDungeon().drawInfo("Dropped selected item from pack");
+                    }else if (ch == 'r') {
+                        player.getDungeon().drawInfo("Read selected scroll");
+                    }
+                    helpCommand = false;
                 }
                 else if (ch == 'c') {
                     player.change_armor();
@@ -132,19 +149,7 @@ public class KeyStrokePrinter implements InputObserver, Runnable {
                     player.getDungeon().drawInfo("Commands (H + key for more info): c, d, i, p, r, t, w");
                 }else if (ch == 'H'){
                     player.getDungeon().drawInfo("Enter command:");
-                    if (ch == 'i') {
-                        player.getDungeon().drawInfo("Displays and refresh pack and info");
-                    }else if (ch == 'w') {
-                        player.getDungeon().drawInfo("Wear Selected Armor within pack index");
-                    }else if (ch == 'c') {
-                        player.getDungeon().drawInfo("Take of currently equipped armor");
-                    }else if (ch == 't') {
-                        player.getDungeon().drawInfo("Wield selected sword within pack index");
-                    }else if (ch == 'd') {
-                        player.getDungeon().drawInfo("Dropped selected item from pack");
-                    }else if (ch == 'r') {
-                        player.getDungeon().drawInfo("Read selected scroll");
-                    }
+                    helpCommand = true;
                 }
 
                 // the not great repaint solution: redraw everything again

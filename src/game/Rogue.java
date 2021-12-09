@@ -25,7 +25,7 @@ public class Rogue implements Runnable{
         String fileName = null;
         switch (args.length) {
         case 1:
-           fileName = "src/xmlfiles/" + args[0];
+           fileName = "xmlfiles/" + args[0];
            break;
         default:
             fileName = "src/xmlfiles/badScroll.xml";

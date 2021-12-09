@@ -55,6 +55,12 @@ public class Player extends Creature {
 
     public void dropItem(int index){
         Item item = pack.get(index);
+        if(item == equipped_armor){
+            equipped_armor = null;
+        }
+        else if(item == equipped_sword){
+            equipped_sword = null;
+        }
         pack.remove(item);
         item.setPosX(this.getPosX());
         item.setPosY(this.getPosY());
@@ -234,18 +240,18 @@ public class Player extends Creature {
             }
             else if(thing.isMonster()){
                 this.attack(this, (Creature) thing, false); // player attacks creature
-                if(this.getHp() <= 0){ 
-                    for(int i = 0; i < this.getDeathActionSize(); i++){
-                        this.getDeathAction(i).performAction();
-                    }
-                }
+                // if(this.getHp() <= 0){ 
+                //     for(int i = 0; i < this.getDeathActionSize(); i++){
+                //         this.getDeathAction(i).performAction();
+                //     }
+                // }
                 thing.attack((Creature) thing, this, true); // creature attacks player
-                if(thing.getHp() <= 0){
-                    Creature c = (Creature) thing;
-                    for(int i = 0; i < c.getDeathActionSize(); i++){
-                        c.getDeathAction(i).performAction();
-                    }
-                }
+                // if(thing.getHp() <= 0){
+                //     Creature c = (Creature) thing;
+                //     for(int i = 0; i < c.getDeathActionSize(); i++){
+                //         c.getDeathAction(i).performAction();
+                //     }
+                // }
                 this.drawHpString(this.getHp());
             }
         }
